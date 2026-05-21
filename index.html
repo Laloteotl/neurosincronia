@@ -1,0 +1,301 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;500;700&display=swap');
+
+#ns-wrap * { box-sizing: border-box; margin: 0; padding: 0; }
+
+#ns-wrap {
+  background: #000;
+  color: #00ff41;
+  font-family: 'Share Tech Mono', monospace;
+  padding: 32px 24px;
+  min-height: 80vh;
+  position: relative;
+}
+
+#ns-wrap::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.07) 2px, rgba(0,0,0,0.07) 4px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ns-inner { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; }
+
+.ns-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #00aa2a;
+  padding-bottom: 14px;
+  margin-bottom: 32px;
+}
+
+.ns-logo {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: #00ff41;
+  text-shadow: 0 0 18px #00ff41;
+}
+
+.ns-status {
+  font-size: 0.65rem;
+  color: #00aa2a;
+  display: flex;
+  gap: 20px;
+}
+
+.ns-dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  background: #00ff41;
+  border-radius: 50%;
+  margin-right: 5px;
+  animation: ns-blink 1.4s infinite;
+  box-shadow: 0 0 6px #00ff41;
+}
+
+@keyframes ns-blink { 0%,100%{opacity:1} 50%{opacity:0.1} }
+
+.ns-boot { margin-bottom: 32px; }
+.ns-boot p {
+  font-size: 0.7rem;
+  color: #00aa2a;
+  margin-bottom: 4px;
+  opacity: 0;
+  animation: ns-in 0.3s forwards;
+}
+.ns-boot p:nth-child(1){animation-delay:0.1s}
+.ns-boot p:nth-child(2){animation-delay:0.3s}
+.ns-boot p:nth-child(3){animation-delay:0.5s}
+.ns-boot p:nth-child(4){animation-delay:0.7s}
+
+@keyframes ns-in { to { opacity: 1; } }
+
+.ns-reto {
+  border: 1px solid #00ff41;
+  padding: 28px;
+  position: relative;
+  background: rgba(0,255,65,0.04);
+  box-shadow: 0 0 30px rgba(0,255,65,0.07);
+  margin-bottom: 36px;
+  opacity: 0;
+  animation: ns-in 0.4s 1s forwards;
+}
+
+.ns-reto::before {
+  content: '[ MISIÓN ACTIVA ]';
+  position: absolute;
+  top: -10px; left: 20px;
+  background: #000;
+  padding: 0 8px;
+  font-size: 0.6rem;
+  color: #00aa2a;
+  letter-spacing: 3px;
+}
+
+.ns-reto-label {
+  font-size: 0.6rem;
+  letter-spacing: 4px;
+  color: #00aa2a;
+  margin-bottom: 10px;
+}
+
+.ns-reto-text {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #fff;
+  text-shadow: 0 0 16px #00ff41;
+  margin-bottom: 16px;
+}
+
+.ns-reto-sub {
+  font-size: 0.72rem;
+  color: #00aa2a;
+  border-left: 2px solid #00aa2a;
+  padding-left: 12px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.ns-btn {
+  display: inline-block;
+  background: #00ff41;
+  color: #000 !important;
+  padding: 13px 30px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  box-shadow: 0 0 18px rgba(0,255,65,0.4);
+  transition: all 0.1s;
+  cursor: pointer;
+}
+
+.ns-btn:hover {
+  background: #fff;
+  box-shadow: 0 0 36px rgba(0,255,65,0.8);
+}
+
+.ns-sep {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 22px;
+  opacity: 0;
+  animation: ns-in 0.4s 1.4s forwards;
+}
+.ns-sep::before, .ns-sep::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #00aa2a;
+  opacity: 0.35;
+}
+.ns-sep span { font-size: 0.6rem; letter-spacing: 4px; color: #00aa2a; white-space: nowrap; }
+
+.ns-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  opacity: 0;
+  animation: ns-in 0.4s 1.6s forwards;
+}
+
+.ns-nodo {
+  border: 1px solid #00aa2a;
+  padding: 18px;
+  text-decoration: none !important;
+  display: block;
+  transition: all 0.15s;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+}
+
+.ns-nodo::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: rgba(0,255,65,0.08);
+  transition: left 0.2s;
+}
+
+.ns-nodo:hover { border-color: #00ff41; }
+.ns-nodo:hover::before { left: 0; }
+.ns-nodo:hover .ns-n-titulo { color: #fff; text-shadow: 0 0 10px #00ff41; }
+
+.ns-n-num { font-size: 0.58rem; color: #00aa2a; letter-spacing: 3px; margin-bottom: 5px; }
+.ns-n-titulo {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #00ff41;
+  text-transform: uppercase;
+  transition: all 0.15s;
+}
+.ns-n-desc { font-size: 0.58rem; color: #00aa2a; margin-top: 5px; opacity: 0.7; }
+
+.ns-footer {
+  margin-top: 36px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(0,255,65,0.12);
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.58rem;
+  color: rgba(0,255,65,0.25);
+  opacity: 0;
+  animation: ns-in 0.4s 2s forwards;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+@media(max-width:600px){
+  .ns-grid { grid-template-columns: 1fr; }
+  .ns-reto-text { font-size: 1.1rem; }
+  .ns-status { display: none; }
+  .ns-footer { flex-direction: column; }
+}
+</style>
+
+<div id="ns-wrap">
+  <div class="ns-inner">
+
+    <div class="ns-header">
+      <div class="ns-logo">NEUROSINCRONIA</div>
+      <div class="ns-status">
+        <span><span class="ns-dot"></span>SISTEMA ACTIVO</span>
+        <span>LOCAL-FIRST v1.0</span>
+      </div>
+    </div>
+
+    <div class="ns-boot">
+      <p>&gt; iniciando protocolo de ejecución...</p>
+      <p>&gt; cargando perfil neurodivergente...</p>
+      <p>&gt; procastinación detectada: NEUTRALIZANDO</p>
+      <p>&gt; sistema listo. no hay excusas.</p>
+    </div>
+
+    <div class="ns-reto">
+      <div class="ns-reto-label">// reto del día</div>
+      <div class="ns-reto-text">ELIGE UNA TAREA QUE LLEVAS SEMANAS EVITANDO.<br>TIENES 25 MINUTOS. SOLO UNA. EMPIEZA YA.</div>
+      <div class="ns-reto-sub">
+        No la pienses. No la planifiques. Ábrela y pon el temporizador.<br>
+        Si no sabes por dónde empezar → activa el nodo 02 CRISIS.
+      </div>
+      <a href="#" class="ns-btn">▶ EJECUTAR AHORA</a>
+    </div>
+
+    <div class="ns-sep"><span>// NODOS DE ACCIÓN</span></div>
+
+    <div class="ns-grid">
+      <a href="#" class="ns-nodo">
+        <div class="ns-n-num">01 ——</div>
+        <div class="ns-n-titulo">SUPERVIVENCIA</div>
+        <div class="ns-n-desc">internet · comida · refugio · transporte</div>
+      </a>
+      <a href="#" class="ns-nodo">
+        <div class="ns-n-num">02 ——</div>
+        <div class="ns-n-titulo">CRISIS</div>
+        <div class="ns-n-desc">bloqueo · ansiedad · shutdown · burnout</div>
+      </a>
+      <a href="#" class="ns-nodo">
+        <div class="ns-n-num">03 ——</div>
+        <div class="ns-n-titulo">DINERO</div>
+        <div class="ns-n-desc">microingresos · becas · apoyos</div>
+      </a>
+      <a href="#" class="ns-nodo">
+        <div class="ns-n-num">04 ——</div>
+        <div class="ns-n-titulo">INFRAESTRUCTURA</div>
+        <div class="ns-n-desc">celular · software · wifi</div>
+      </a>
+      <a href="#" class="ns-nodo">
+        <div class="ns-n-num">05 ——</div>
+        <div class="ns-n-titulo">PROYECTOS</div>
+        <div class="ns-n-desc">incubación · sprint · entrega</div>
+      </a>
+      <a href="#" class="ns-nodo">
+        <div class="ns-n-num">06 ——</div>
+        <div class="ns-n-titulo">COMUNIDAD</div>
+        <div class="ns-n-desc">pedir ayuda · ofrecer · watchdog</div>
+      </a>
+    </div>
+
+    <div class="ns-footer">
+      <span>NEUROSINCRONIA © 2025</span>
+      <span>MODO: ANTIPROCASTINACIÓN</span>
+      <span>LOCAL-FIRST · SIN EXCUSAS</span>
+    </div>
+
+  </div>
+</div>
