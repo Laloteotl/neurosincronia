@@ -133,3 +133,30 @@ NEUROSINCRONIA © 2026
 </body>
 </html>
 EOF
+<script>
+const tips = [
+"No estás cansado. Estás saturado de decisiones.",
+"Pensar más no es avanzar más.",
+"Tu cerebro necesita acción, no motivación.",
+"Si llevas mucho planeando, ya procrastinaste.",
+"Hazlo feo. Corrígelo después.",
+"La claridad aparece después de empezar.",
+"Cinco minutos vencen a cero.",
+"No negocies con la resistencia.",
+"El progreso real se siente incómodo.",
+"Continuidad > perfección."
+];
+
+const tipbox = document.createElement("div");
+tipbox.style.marginBottom="18px";
+tipbox.style.padding="14px";
+tipbox.style.borderLeft="3px solid #00ff41";
+tipbox.style.background="rgba(0,255,65,.03)";
+tipbox.style.fontSize=".78rem";
+tipbox.style.color="#fff";
+tipbox.style.lineHeight="1.6";
+
+tipbox.innerText = tips[Math.floor(Math.random()*tips.length)];
+
+document.querySelector(".reto").prepend(tipbox);
+</script>
