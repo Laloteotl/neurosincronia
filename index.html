@@ -1,12 +1,12 @@
-cat > index.html << 'EOF'
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NEUROSINCRONIA</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -15,148 +15,214 @@ body{
 background:#000;
 color:#00ff41;
 font-family:'Share Tech Mono',monospace;
-padding:40px;
+overflow-x:hidden;
+}
+
+body:after{
+content:'';
+position:fixed;
+inset:0;
+pointer-events:none;
+background:repeating-linear-gradient(
+0deg,
+transparent,
+transparent 2px,
+rgba(0,255,65,.02) 3px
+);
+}
+
+.wrap{
 max-width:1200px;
 margin:auto;
+padding:60px 30px;
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+}
+
+.logo{
+font-family:'Rajdhani';
+font-size:1.3rem;
+letter-spacing:10px;
+margin-bottom:25px;
+opacity:.8;
+}
+
+.tip{
+border-left:4px solid #00ff41;
+padding:20px;
+background:rgba(0,255,65,.03);
+margin-bottom:40px;
+font-size:.9rem;
+line-height:1.7;
+color:#fff;
 }
 
 h1{
-font-family:'Rajdhani',sans-serif;
-font-size:3rem;
+font-family:'Rajdhani';
+font-size:4.8rem;
+font-weight:700;
+line-height:.95;
 color:#fff;
-margin-bottom:20px;
-text-shadow:0 0 20px #00ff41;
+text-shadow:0 0 30px rgba(0,255,65,.25);
+margin-bottom:25px;
 }
 
 .sub{
-color:#00aa2a;
-margin-bottom:40px;
+font-size:1rem;
+max-width:700px;
+line-height:1.8;
+opacity:.8;
+margin-bottom:45px;
+}
+
+.cta{
+display:inline-block;
+padding:18px 36px;
+background:#00ff41;
+color:#000;
+text-decoration:none;
+font-weight:bold;
+letter-spacing:3px;
+margin-bottom:70px;
 }
 
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:18px;
 }
 
-.nodo{
-display:block;
-padding:24px;
-border:1px solid #00aa2a;
+.card{
+border:1px solid rgba(0,255,65,.25);
+padding:25px;
 text-decoration:none;
 color:#00ff41;
 transition:.2s;
 }
 
-.nodo:hover{
+.card:hover{
 border-color:#00ff41;
-box-shadow:0 0 20px rgba(0,255,65,.35);
-transform:translateY(-3px);
+transform:translateY(-4px);
+box-shadow:0 0 25px rgba(0,255,65,.15);
 }
 
-.num{
-font-size:.7rem;
-color:#00aa2a;
-margin-bottom:8px;
-}
-
-.titulo{
+.card h3{
 font-family:'Rajdhani';
 font-size:1.4rem;
-font-weight:700;
 color:#fff;
-margin-bottom:8px;
-}
-
-.desc{
-font-size:.8rem;
-color:#00aa2a;
+margin-bottom:10px;
 }
 
 footer{
-margin-top:50px;
-color:#007f20;
-font-size:.7rem;
+margin-top:80px;
+opacity:.35;
+font-size:.75rem;
+}
+
+@media(max-width:700px){
+h1{font-size:2.8rem}
 }
 </style>
 </head>
-
 <body>
 
-<h1>NEUROSINCRONIA</h1>
-<div class="sub">Sistema local-first de ejecución neurodivergente</div>
+<div class="wrap">
+
+<section class="hero">
+
+<div class="logo">NEUROSINCRONIA</div>
+
+<div class="tip" id="tip"></div>
+
+<h1>
+NO NECESITAS<br>
+MOTIVACIÓN.<br>
+NECESITAS<br>
+SISTEMA.
+</h1>
+
+<div class="sub">
+La procrastinación no es flojera.  
+Es una falla de ejecución.
+
+NeuroSincronía reemplaza fricción mental por instrucciones accionables, rutas de contingencia y prueba real de avance.
+</div>
+
+<a class="cta" href="crisis.html">INICIAR PROTOCOLO</a>
 
 <div class="grid">
 
-<a href="supervivencia.html" class="nodo">
-<div class="num">01</div>
-<div class="titulo">SUPERVIVENCIA</div>
-<div class="desc">internet · comida · refugio · transporte</div>
+<a class="card" href="supervivencia.html">
+<h3>SUPERVIVENCIA</h3>
+Internet · energía · refugio
 </a>
 
-<a href="crisis.html" class="nodo">
-<div class="num">02</div>
-<div class="titulo">CRISIS</div>
-<div class="desc">bloqueo · ansiedad · shutdown</div>
+<a class="card" href="crisis.html">
+<h3>CRISIS</h3>
+Bloqueo · ansiedad · reinicio
 </a>
 
-<a href="dinero.html" class="nodo">
-<div class="num">03</div>
-<div class="titulo">DINERO</div>
-<div class="desc">microingresos · becas · apoyo</div>
+<a class="card" href="dinero.html">
+<h3>DINERO</h3>
+Liquidez inmediata
 </a>
 
-<a href="infraestructura.html" class="nodo">
-<div class="num">04</div>
-<div class="titulo">INFRAESTRUCTURA</div>
-<div class="desc">wifi · software · dispositivos</div>
+<a class="card" href="infraestructura.html">
+<h3>INFRAESTRUCTURA</h3>
+Dispositivos · conectividad
 </a>
 
-<a href="proyectos.html" class="nodo">
-<div class="num">05</div>
-<div class="titulo">PROYECTOS</div>
-<div class="desc">sprints · entrega · ejecución</div>
+<a class="card" href="proyectos.html">
+<h3>PROYECTOS</h3>
+Entrega > perfección
 </a>
 
-<a href="comunidad.html" class="nodo">
-<div class="num">06</div>
-<div class="titulo">COMUNIDAD</div>
-<div class="desc">ayuda mutua · watchdog</div>
+<a class="card" href="comunidad.html">
+<h3>COMUNIDAD</h3>
+Escalamiento humano
 </a>
 
 </div>
 
 <footer>
-NEUROSINCRONIA © 2026
+LOCAL-FIRST · SISTEMA OPERATIVO CONDUCTUAL
 </footer>
+
+</section>
+
+</div>
+
+<script>
+const tips=[
+
+"No estás roto. Tu entorno está mal diseñado.",
+
+"Pensar no cuenta como avanzar.",
+
+"Tu ansiedad ama los planes porque odia empezar.",
+
+"La claridad aparece al ejecutar.",
+
+"Hazlo mal. Hazlo hoy.",
+
+"Cinco minutos vencen cualquier excusa.",
+
+"Si puedes abrirlo, puedes empezarlo.",
+
+"El sistema gana donde falla la voluntad.",
+
+"No necesitas ganas. Necesitas protocolo."
+
+];
+
+document.getElementById("tip").innerText=
+tips[Math.floor(Math.random()*tips.length)];
+</script>
 
 </body>
 </html>
-EOF
-<script>
-const tips = [
-"No estás cansado. Estás saturado de decisiones.",
-"Pensar más no es avanzar más.",
-"Tu cerebro necesita acción, no motivación.",
-"Si llevas mucho planeando, ya procrastinaste.",
-"Hazlo feo. Corrígelo después.",
-"La claridad aparece después de empezar.",
-"Cinco minutos vencen a cero.",
-"No negocies con la resistencia.",
-"El progreso real se siente incómodo.",
-"Continuidad > perfección."
-];
-
-const tipbox = document.createElement("div");
-tipbox.style.marginBottom="18px";
-tipbox.style.padding="14px";
-tipbox.style.borderLeft="3px solid #00ff41";
-tipbox.style.background="rgba(0,255,65,.03)";
-tipbox.style.fontSize=".78rem";
-tipbox.style.color="#fff";
-tipbox.style.lineHeight="1.6";
-
-tipbox.innerText = tips[Math.floor(Math.random()*tips.length)];
-
-document.querySelector(".reto").prepend(tipbox);
-</script>
