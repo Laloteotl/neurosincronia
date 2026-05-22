@@ -8,82 +8,79 @@
 body{
 background:#000;
 color:#00ff41;
-font-family:'Share Tech Mono';
+font-family:'Share Tech Mono', monospace;
 padding:48px;
 max-width:1000px;
-margin:auto
+margin:auto;
 }
-h1{font-family:Rajdhani;color:#fff}
-.box{
+h1{
+font-family:'Rajdhani',sans-serif;
+color:#fff;
+font-size:3rem;
+}
+section{
 border:1px solid #00aa2a;
 padding:24px;
-margin:24px 0
+margin:20px 0;
 }
-button{
-background:#00ff41;
-color:#000;
-border:none;
-padding:14px 20px;
-cursor:pointer;
-font-weight:bold;
-margin:8px
+a{
+color:#00ff41;
+text-decoration:none;
 }
-.hidden{display:none}
-a{color:#00ff41}
+strong{
+color:#fff;
+}
 </style>
 </head>
 <body>
 
-<h1>02 — MANEJO DE CRISIS</h1>
+<h1>02 — CRISIS</h1>
 
-<div class="box" id="start">
-<p>¿Puedes levantarte físicamente?</p>
-<button onclick="show('yes1')">SÍ</button>
-<button onclick="show('no1')">NO</button>
-</div>
+<section>
+<h2>BLOQUEO TOTAL</h2>
+<p>
+1. Ponte de pie<br>
+2. Toma agua<br>
+3. Lava tu cara<br>
+4. Regresa aquí<br>
+5. Ejecuta una tarea de 2 minutos
+</p>
+</section>
 
-<div class="box hidden" id="yes1">
-<p>Levántate ahora.</p>
-<p>Toma agua.</p>
-<p>Regresa y pulsa continuar.</p>
-<button onclick="show('step2')">HECHO</button>
-</div>
+<section>
+<h2>PARÁLISIS POR ANSIEDAD</h2>
+<p>
+Tu cerebro simula peligro.<br>
+Reduce el horizonte a 10 minutos.
+</p>
+<p><strong>Abre terminal → escribe:</strong></p>
+<p>date</p>
+</section>
 
-<div class="box hidden" id="no1">
-<p>Respira 10 veces.</p>
-<p>Si sigues inmóvil tras 5 minutos → activar apoyo externo.</p>
-<button onclick="show('help')">NECESITO APOYO</button>
-</div>
+<section>
+<h2>NO PUEDO LEVANTARME</h2>
+<p>
+Mueve un dedo.<br>
+Luego mano.<br>
+Luego brazo.<br>
+Luego torso.<br>
+Luego pies al suelo.
+</p>
+</section>
 
-<div class="box hidden" id="step2">
-<p>¿Tienes internet?</p>
-<button onclick="show('internet')">SÍ</button>
-<button onclick="show('offline')">NO</button>
-</div>
-
-<div class="box hidden" id="internet">
-<p>Abre ChatGPT y pide investigación concreta.</p>
-<p>Genera un archivo PoW.</p>
-</div>
-
-<div class="box hidden" id="offline">
-<p>Modo local-first:</p>
-<p>Abre Obsidian y escribe 10 líneas.</p>
-</div>
-
-<div class="box hidden" id="help">
-<p>Escalando intervención.</p>
-<p>Contacto profesional recomendado.</p>
-<p>Próximamente conexión automática.</p>
-</div>
+<section>
+<h2>ESCALAMIENTO</h2>
+<p>
+Si no mejoras:</p>
+<p>
+Biblioteca<br>
+Facultad de psicología<br>
+Línea de vida<br>
+Comunidad NeuroSincronía
+</p>
+</section>
 
 <a href="index.html">← VOLVER</a>
-
-<script>
-function show(id){
-document.getElementById(id).classList.remove('hidden');
-}
-</script>
 
 </body>
 </html>
