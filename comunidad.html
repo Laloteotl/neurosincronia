@@ -126,7 +126,7 @@ buttons:[["REINICIAR",0]]
 
 };
 
-let current=0;
+let current=parseInt(localStorage.getItem(location.pathname))||0;
 
 function render(){
 
@@ -160,6 +160,7 @@ b.innerText=label;
 
 b.onclick=()=>{
 current=next;
+localStorage.setItem(location.pathname,current);
 render();
 };
 
