@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>NEUROSINCRONÍA // PRODUCTIVIDAD</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+background:#000;
+color:#00ff41;
+font-family:'Share Tech Mono',monospace;
+padding:48px;
+max-width:1000px;
+margin:auto;
+}
+
+h1{
+font-family:'Rajdhani',sans-serif;
+font-size:3rem;
+color:#fff;
+}
+
+.sub{
+opacity:.55;
+margin-bottom:30px;
+}
+
+section{
+border:1px solid #00aa2a;
+padding:30px;
+margin-top:30px;
+min-height:300px;
+}
+
+button{
+background:#000;
+color:#00ff41;
+border:1px solid #00aa2a;
+padding:14px 24px;
+margin:10px;
+cursor:pointer;
+font-family:'Share Tech Mono',monospace;
+}
+
+button:hover{
+background:#001100;
+}
+
+a{
+color:#00ff41;
+text-decoration:none;
+}
+
+#content{
+white-space:pre-line;
+line-height:1.9;
+}
+</style>
+</head>
+<body>
+
+<h1>03 // PRODUCTIVIDAD</h1>
+<div class="sub">PROTOCOLO DE ACTIVACIÓN ECONÓMICA</div>
+
+<section>
+<div id="content"></div>
+<div id="actions"></div>
+</section>
+
+<a href="index.html">← REGRESAR</a>
+
+<script>
+
+const steps={
+
+0:{
+text:`Inventario inicial.
+
+¿Tienes conexión WIFI real y energía eléctrica?`,
+buttons:[["SÍ",4],["NO",1]]
+},
+
+1:{
+text:`Localiza acceso público.
+
+Biblioteca
+Escuela pública
+Centro comunitario
+Starbucks
+Aeropuerto
+Walmart
+Home Depot
+
+Confirma cuando llegues.`,
+buttons:[["CONFIRMAR",4]]
+},
+
+4:{
+text:`Infraestructura operativa.
+
+¿Tienes habilidades digitales utilizables hoy?`,
+buttons:[["SÍ",5],["NO",8]]
+},
+
+5:{
+text:`Ruta de producción.
+
+Investiga.
+Sube hallazgos.
+Consolida conocimiento.
+
+Canal base:
+
+https://www.youtube.com/@consolidar-ia`,
+buttons:[["CONTINUAR",6]]
+},
+
+6:{
+text:`Convierte conocimiento en activo.
+
+Video
+Producto
+Automatización
+Tienda
+
+Horizonte estimado:
+30 días`,
+buttons:[["LISTO",7]]
+},
+
+7:{
+text:`Monetización estratégica iniciada.
+
+Transferencia autorizada al módulo DINERO.`,
+buttons:[["REINICIAR",0]]
+},
+
+8:{
+text:`No necesitas expertise.
+
+Busca algo vendible hoy:
+
+Comida
+Postres
+Despensa
+Servicio simple`,
+buttons:[["CONTINUAR",9]]
+},
+
+9:{
+text:`Si no hay dinero:
+
+activa trueque TDAHsome.
+
+Tengo → Necesito
+
+Intercambio comunitario inmediato.`,
+buttons:[["CONTINUAR",10]]
+},
+
+10:{
+text:`Si aún falta recurso:
+
+activa micrositio UN PARO.
+
+Publica:
+
+Quién eres
+Qué tienes
+Qué buscas
+Qué sabes hacer`,
+buttons:[["FINALIZAR",7]]
+}
+
+};
+
+let current=0;
+
+function render(){
+
+const c=document.getElementById("content");
+const a=document.getElementById("actions");
+
+c.innerText=steps[current].text;
+a.innerHTML="";
+
+steps[current].buttons.forEach(([label,next])=>{
+
+const b=document.createElement("button");
+b.innerText=label;
+
+b.onclick=()=>{
+current=next;
+render();
+};
+
+a.appendChild(b);
+
+});
+
+}
+
+render();
+
+</script>
+
+</body>
+</html>
