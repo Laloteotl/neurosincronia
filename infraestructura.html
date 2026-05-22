@@ -1,1 +1,176 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>INFRAESTRUCTURA</title><link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet"><style>body{background:#000;color:#00ff41;font-family:'Share Tech Mono';padding:48px;max-width:1000px;margin:auto}h1{font-family:Rajdhani;color:#fff}section{border:1px solid #00aa2a;padding:24px;margin:20px 0}a{color:#00ff41}</style></head><body><h1>04 — INFRAESTRUCTURA</h1><section>Celular operativo.</section><section>Software funcional.</section><section>Conectividad estable.</section><a href="index.html">← VOLVER</a></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEUROSINCRONIA | 05 INFRAESTRUCTURA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; min-height: 100vh; background: #000; color: #00ff41; font-family: 'Share Tech Mono', monospace; overflow-x: hidden; }
+  body::after { content: ''; position: fixed; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.06) 2px, rgba(0,0,0,0.06) 4px); pointer-events: none; z-index: 999; }
+  .wrap { width: 100%; max-width: 1000px; margin: 0 auto; padding: 48px 40px; }
+  .hdr { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #00aa2a; padding-bottom: 16px; margin-bottom: 40px; }
+  .logo { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1.3rem; letter-spacing: 8px; text-transform: uppercase; text-shadow: 0 0 20px #00ff41; }
+  .logo a { color: #00ff41; text-decoration: none; }
+  .status { font-size: 0.65rem; color: #00aa2a; display: flex; gap: 24px; }
+  .dot { display: inline-block; width: 7px; height: 7px; background: #00ff41; border-radius: 50%; margin-right: 6px; box-shadow: 0 0 8px #00ff41; animation: blink 1.4s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+  .page-title { margin-bottom: 32px; }
+  .page-title .num { font-size: 0.65rem; color: #00aa2a; letter-spacing: 4px; margin-bottom: 8px; }
+  .page-title h1 { font-family: 'Rajdhani', sans-serif; font-size: 2rem; font-weight: 700; color: #fff; text-shadow: 0 0 20px rgba(0,255,65,0.4); letter-spacing: 3px; }
+  .page-title .sub { font-size: 0.72rem; color: #00aa2a; margin-top: 8px; }
+  .nodo { border: 1px solid #00aa2a; padding: 28px; margin-bottom: 16px; position: relative; display: none; animation: fadein 0.3s ease forwards; }
+  .nodo.active { display: block; }
+  .nodo::before { content: attr(data-label); position: absolute; top: -10px; left: 20px; background: #000; padding: 0 8px; font-size: 0.6rem; color: #00aa2a; letter-spacing: 3px; }
+  @keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .pregunta { font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 16px; line-height: 1.3; }
+  .instruccion { font-size: 0.75rem; color: #00aa2a; border-left: 2px solid #00aa2a; padding-left: 12px; line-height: 1.7; margin-bottom: 20px; }
+  .pasos { margin-bottom: 20px; }
+  .paso { font-size: 0.72rem; color: #00ff41; margin-bottom: 10px; padding-left: 16px; position: relative; line-height: 1.5; }
+  .paso::before { content: '▸'; position: absolute; left: 0; color: #00aa2a; }
+  .btns { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+  .btn { display: inline-block; background: #00ff41; color: #000; padding: 12px 24px; font-family: 'Share Tech Mono', monospace; font-size: 0.8rem; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; border: none; cursor: pointer; box-shadow: 0 0 16px rgba(0,255,65,0.4); transition: all 0.12s; }
+  .btn:hover { background: #fff; box-shadow: 0 0 30px rgba(0,255,65,0.8); transform: translateY(-1px); }
+  .btn.outline { background: transparent; color: #00aa2a; border: 1px solid #00aa2a; box-shadow: none; }
+  .btn.outline:hover { background: rgba(0,255,65,0.08); color: #00ff41; border-color: #00ff41; transform: none; }
+  .reiniciar { margin-top: 32px; padding-top: 20px; border-top: 1px solid rgba(0,255,65,0.1); }
+  .ftr { margin-top: 48px; padding-top: 20px; border-top: 1px solid rgba(0,255,65,0.1); display: flex; justify-content: space-between; font-size: 0.6rem; color: rgba(0,255,65,0.2); flex-wrap: wrap; gap: 8px; }
+  .back { display: inline-block; font-size: 0.7rem; color: #00aa2a; text-decoration: none; letter-spacing: 2px; margin-bottom: 32px; }
+  .back:hover { color: #00ff41; }
+  @media (max-width: 700px) { .wrap { padding: 28px 20px; } .pregunta { font-size: 1.1rem; } .status { display: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hdr">
+    <div class="logo"><a href="index.html">NEUROSINCRONIA</a></div>
+    <div class="status"><span><span class="dot"></span>NODO ACTIVO</span><span>PROTOCOLO 05</span></div>
+  </header>
+  <a href="index.html" class="back">← VOLVER AL INICIO</a>
+  <div class="page-title">
+    <div class="num">// PROTOCOLO 05</div>
+    <h1>INFRAESTRUCTURA</h1>
+    <div class="sub">Sin herramientas no hay ejecución. Resuelve el entorno primero.</div>
+  </div>
+
+  <!-- INICIO -->
+  <div class="nodo active" id="n0" data-label="[ DIAGNÓSTICO DE ENTORNO ]">
+    <div class="pregunta">¿Qué parte de tu infraestructura está fallando?</div>
+    <div class="btns" style="flex-direction:column;align-items:flex-start;">
+      <button class="btn" onclick="ir('n_internet')" style="width:100%;text-align:left;margin-bottom:4px">NO TENGO INTERNET O ES MUY LENTO</button>
+      <button class="btn" onclick="ir('n_celular')" style="width:100%;text-align:left;margin-bottom:4px">MI CELULAR NO FUNCIONA BIEN</button>
+      <button class="btn" onclick="ir('n_pc')" style="width:100%;text-align:left;margin-bottom:4px">MI COMPUTADORA TIENE PROBLEMAS</button>
+      <button class="btn" onclick="ir('n_espacio')" style="width:100%;text-align:left">MI ESPACIO DE TRABAJO NO FUNCIONA</button>
+    </div>
+  </div>
+
+  <!-- INTERNET -->
+  <div class="nodo" id="n_internet" data-label="[ CONECTIVIDAD ]">
+    <div class="pregunta">Protocolo de restauración de conexión</div>
+    <div class="pasos">
+      <div class="paso">Reinicia el router: apágalo 30 segundos, vuelve a encenderlo.</div>
+      <div class="paso">Si tienes datos móviles: activa hotspot desde tu celular ahora.</div>
+      <div class="paso">Cambia DNS: usa 8.8.8.8 (Google) o 1.1.1.1 (Cloudflare) en tu configuración de red.</div>
+      <div class="paso">Sin ninguna opción en casa: Starbucks, biblioteca pública, aeropuerto — wifi gratuito.</div>
+      <div class="paso">Biblioteca pública: solo das tu nombre. Acceso gratuito garantizado.</div>
+    </div>
+    <div class="instruccion">No pierdas más de 15 minutos resolviendo conectividad. Si no se resuelve — cambia de lugar físico.</div>
+    <div class="btns">
+      <button class="btn" onclick="ir('n_ok')">CONEXIÓN RESUELTA</button>
+      <button class="btn outline" onclick="ir('n_sin_net')">SIGO SIN CONEXIÓN</button>
+    </div>
+  </div>
+
+  <!-- SIN NET -->
+  <div class="nodo" id="n_sin_net" data-label="[ MODO OFFLINE ]">
+    <div class="pregunta">Protocolo de trabajo sin internet</div>
+    <div class="pasos">
+      <div class="paso">Define qué tareas puedes hacer sin conexión: escribir, diseñar, programar localmente.</div>
+      <div class="paso">Descarga lo que necesites cuando tengas conexión, trabaja offline cuando no.</div>
+      <div class="paso">Obsidian, VS Code, LibreOffice — funcionan 100% sin internet.</div>
+      <div class="paso">Sincroniza cuando vuelva la conexión. No esperes a tener todo perfecto.</div>
+    </div>
+    <div class="instruccion">El modo offline no es un obstáculo — es enfoque forzado. Sin notificaciones, sin distracciones.</div>
+    <div class="btns">
+      <button class="btn" onclick="ir('n_ok')">MODO OFFLINE ACTIVO</button>
+    </div>
+  </div>
+
+  <!-- CELULAR -->
+  <div class="nodo" id="n_celular" data-label="[ DISPOSITIVO MÓVIL ]">
+    <div class="pregunta">Protocolo de recuperación del celular</div>
+    <div class="pasos">
+      <div class="paso">Batería baja: activa modo avión + bajo consumo. Carga antes de cualquier otra tarea.</div>
+      <div class="paso">App que no abre: ciérrala completamente, reabre. Si persiste — reinstala.</div>
+      <div class="paso">Pantalla rota pero funcional: usa teclado bluetooth o trabaja desde PC.</div>
+      <div class="paso">Sin crédito ni datos: usa WiFi y WhatsApp Web desde computadora.</div>
+      <div class="paso">Celular perdido: accede a todo desde PC con tus cuentas Google o iCloud.</div>
+    </div>
+    <div class="instruccion">Si el celular es tu única herramienta de trabajo, resolver esto es prioridad absoluta antes de cualquier otra tarea.</div>
+    <div class="btns">
+      <button class="btn" onclick="ir('n_ok')">DISPOSITIVO OPERATIVO</button>
+    </div>
+  </div>
+
+  <!-- PC -->
+  <div class="nodo" id="n_pc" data-label="[ COMPUTADORA ]">
+    <div class="pregunta">Protocolo de diagnóstico de equipo</div>
+    <div class="pasos">
+      <div class="paso">Reinicia antes de diagnosticar cualquier cosa. El 80% se resuelve así.</div>
+      <div class="paso">Lento: cierra todas las pestañas y aplicaciones que no uses ahora mismo.</div>
+      <div class="paso">Actualiza el navegador o la aplicación que falla.</div>
+      <div class="paso">Sin espacio en disco: vacía la papelera y borra descargas antiguas.</div>
+      <div class="paso">Alternativa inmediata: Google Docs funciona en cualquier navegador, en cualquier equipo.</div>
+    </div>
+    <div class="instruccion">Regla: no pierdas más de 15 minutos en un problema técnico. Si no se resuelve — busca la alternativa más simple y continúa.</div>
+    <div class="btns">
+      <button class="btn" onclick="ir('n_ok')">EQUIPO OPERATIVO</button>
+    </div>
+  </div>
+
+  <!-- ESPACIO -->
+  <div class="nodo" id="n_espacio" data-label="[ ENTORNO DE TRABAJO ]">
+    <div class="pregunta">Protocolo de optimización del espacio</div>
+    <div class="pasos">
+      <div class="paso">Cambia de lugar físico aunque sea a otra silla — el cambio de entorno resetea el cerebro.</div>
+      <div class="paso">Elige: silencio total O ruido blanco. No música con letra — compite con el pensamiento.</div>
+      <div class="paso">Quita de tu vista todo lo que no sea la tarea actual. Un escritorio limpio = mente menos cargada.</div>
+      <div class="paso">Temperatura: frío leve activa el estado de alerta. Calor excesivo genera somnolencia.</div>
+      <div class="paso">Si el espacio no mejora en 5 minutos: sal y trabaja desde otro lugar hoy.</div>
+    </div>
+    <div class="instruccion">El entorno no es un detalle cosmético para un cerebro TDAH — es infraestructura crítica. Un espacio que activa distracción tiene el mismo efecto que no tener internet.</div>
+    <div class="btns">
+      <button class="btn" onclick="ir('n_ok')">ENTORNO LISTO — EJECUTAR</button>
+    </div>
+  </div>
+
+  <!-- OK -->
+  <div class="nodo" id="n_ok" data-label="[ INFRAESTRUCTURA OPERATIVA ]">
+    <div class="pregunta">Entorno listo. Sistema operativo.</div>
+    <div class="instruccion">La infraestructura está resuelta. Ahora regresa al sistema y ejecuta la tarea que tenías pendiente.</div>
+    <div class="pasos">
+      <div class="paso">No busques optimizar más el entorno — es otra forma de procrastinar.</div>
+      <div class="paso">Lo suficientemente bueno para trabajar = suficiente.</div>
+      <div class="paso">Regresa al inicio y activa el nodo de tu tarea.</div>
+    </div>
+    <div class="btns">
+      <button class="btn" onclick="window.location.href='index.html'">→ VOLVER AL SISTEMA</button>
+      <button class="btn outline" onclick="reiniciar()">REINICIAR PROTOCOLO</button>
+    </div>
+  </div>
+
+  <div class="reiniciar">
+    <button class="btn outline" onclick="reiniciar()" style="font-size:0.65rem">↺ REINICIAR DESDE EL INICIO</button>
+  </div>
+  <div class="ftr">
+    <span>NEUROSINCRONIA © 2025</span><span>PROTOCOLO 05 — INFRAESTRUCTURA</span><span>LOCAL-FIRST · SIN EXCUSAS</span>
+  </div>
+</div>
+<script>
+  function ir(id) { document.querySelectorAll('.nodo').forEach(n => n.classList.remove('active')); const t = document.getElementById(id); t.classList.add('active'); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  function reiniciar() { document.querySelectorAll('.nodo').forEach(n => n.classList.remove('active')); document.getElementById('n0').classList.add('active'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+</script>
+</body>
+</html>

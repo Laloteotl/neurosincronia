@@ -1,1 +1,263 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>PROYECTOS</title><link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet"><style>body{background:#000;color:#00ff41;font-family:'Share Tech Mono';padding:48px;max-width:1000px;margin:auto}h1{font-family:Rajdhani;color:#fff}section{border:1px solid #00aa2a;padding:24px;margin:20px 0}a{color:#00ff41}</style></head><body><h1>05 — PROYECTOS</h1><section>Idea → MVP.</section><section>Sprint de ejecución.</section><a href="index.html">← VOLVER</a></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEUROSINCRONIA | 06 PROYECTOS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; min-height: 100vh; background: #000; color: #00ff41; font-family: 'Share Tech Mono', monospace; overflow-x: hidden; }
+  body::after { content: ''; position: fixed; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.06) 2px, rgba(0,0,0,0.06) 4px); pointer-events: none; z-index: 999; }
+  .wrap { width: 100%; max-width: 1000px; margin: 0 auto; padding: 48px 40px; }
+  .hdr { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #00aa2a; padding-bottom: 16px; margin-bottom: 40px; }
+  .logo { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1.3rem; letter-spacing: 8px; text-transform: uppercase; text-shadow: 0 0 20px #00ff41; }
+  .logo a { color: #00ff41; text-decoration: none; }
+  .status { font-size: 0.65rem; color: #00aa2a; display: flex; gap: 24px; }
+  .dot { display: inline-block; width: 7px; height: 7px; background: #00ff41; border-radius: 50%; margin-right: 6px; box-shadow: 0 0 8px #00ff41; animation: blink 1.4s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+  .page-title { margin-bottom: 32px; }
+  .page-title .num { font-size: 0.65rem; color: #00aa2a; letter-spacing: 4px; margin-bottom: 8px; }
+  .page-title h1 { font-family: 'Rajdhani', sans-serif; font-size: 2rem; font-weight: 700; color: #fff; text-shadow: 0 0 20px rgba(0,255,65,0.4); letter-spacing: 3px; }
+  .page-title .sub { font-size: 0.72rem; color: #00aa2a; margin-top: 8px; }
+  .nodo { border: 1px solid #00aa2a; padding: 28px; margin-bottom: 16px; position: relative; display: none; animation: fadein 0.3s ease forwards; }
+  .nodo.active { display: block; }
+  .nodo::before { content: attr(data-label); position: absolute; top: -10px; left: 20px; background: #000; padding: 0 8px; font-size: 0.6rem; color: #00aa2a; letter-spacing: 3px; }
+  @keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .pregunta { font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 16px; line-height: 1.3; }
+  .instruccion { font-size: 0.75rem; color: #00aa2a; border-left: 2px solid #00aa2a; padding-left: 12px; line-height: 1.7; margin-bottom: 20px; }
+  .pasos { margin-bottom: 20px; }
+  .paso { font-size: 0.72rem; color: #00ff41; margin-bottom: 10px; padding-left: 16px; position: relative; line-height: 1.5; }
+  .paso::before { content: '▸'; position: absolute; left: 0; color: #00aa2a; }
+  .btns { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+  .btn { display: inline-block; background: #00ff41; color: #000; padding: 12px 24px; font-family: 'Share Tech Mono', monospace; font-size: 0.8rem; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; border: none; cursor: pointer; box-shadow: 0 0 16px rgba(0,255,65,0.4); transition: all 0.12s; }
+  .btn:hover { background: #fff; box-shadow: 0 0 30px rgba(0,255,65,0.8); transform: translateY(-1px); }
+  .btn.outline { background: transparent; color: #00aa2a; border: 1px solid #00aa2a; box-shadow: none; }
+  .btn.outline:hover { background: rgba(0,255,65,0.08); color: #00ff41; border-color: #00ff41; transform: none; }
+  .timer-box { border: 1px solid #00ff41; padding: 20px; text-align: center; margin: 16px 0; background: rgba(0,255,65,0.03); }
+  .timer-display { font-family: 'Rajdhani', sans-serif; font-size: 3rem; font-weight: 700; color: #00ff41; text-shadow: 0 0 20px #00ff41; letter-spacing: 4px; }
+  .timer-label { font-size: 0.6rem; color: #00aa2a; letter-spacing: 3px; margin-top: 4px; }
+  .reiniciar { margin-top: 32px; padding-top: 20px; border-top: 1px solid rgba(0,255,65,0.1); }
+  .ftr { margin-top: 48px; padding-top: 20px; border-top: 1px solid rgba(0,255,65,0.1); display: flex; justify-content: space-between; font-size: 0.6rem; color: rgba(0,255,65,0.2); flex-wrap: wrap; gap: 8px; }
+  .back { display: inline-block; font-size: 0.7rem; color: #00aa2a; text-decoration: none; letter-spacing: 2px; margin-bottom: 32px; }
+  .back:hover { color: #00ff41; }
+  @media (max-width: 700px) { .wrap { padding: 28px 20px; } .pregunta { font-size: 1.1rem; } .status { display: none; } .timer-display { font-size: 2rem; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hdr">
+    <div class="logo"><a href="index.html">NEUROSINCRONIA</a></div>
+    <div class="status"><span><span class="dot"></span>NODO ACTIVO</span><span>PROTOCOLO 06</span></div>
+  </header>
+  <a href="index.html" class="back">← VOLVER AL INICIO</a>
+  <div class="page-title">
+    <div class="num">// PROTOCOLO 06</div>
+    <h1>PROYECTOS</h1>
+    <div class="sub">Entrega &gt; perfección. Hecho &gt; perfecto.</div>
+  </div>
+
+  <!-- INICIO -->
+  <div class="nodo active" id="n0" data-label="[ ESTADO DEL PROYECTO ]">
+    <div class="pregunta">¿En qué punto estás?</div>
+    <div class="btns" style="flex-direction:column;align-items:flex-start;">
+      <button class="btn" onclick="ir('n_idea')" style="width:100%;text-align:left;margin-bottom:4px">TENGO UNA IDEA — NO SÉ POR DÓNDE EMPEZAR</button>
+      <button class="btn" onclick="ir('n_atorado')" style="width:100%;text-align:left;margin-bottom:4px">EMPECÉ PERO ESTOY ATORADO</button>
+      <button class="btn" onclick="ir('n_sprint')" style="width:100%;text-align:left;margin-bottom:4px">NECESITO TERMINAR ALGO HOY</button>
+      <button class="btn" onclick="ir('n_muchos')" style="width:100%;text-align:left">TENGO DEMASIADOS PROYECTOS ABIERTOS</button>
+    </div>
+  </div>
+
+  <!-- IDEA -->
+  <div class="nodo" id="n_idea" data-label="[ INCUBACIÓN → EJECUCIÓN ]">
+    <div class="pregunta">Protocolo de arranque de proyecto</div>
+    <div class="pasos">
+      <div class="paso">Escribe la idea en UNA oración. Si no cabe en una oración — no está clara todavía.</div>
+      <div class="paso">Define: ¿quién lo necesita? ¿qué problema resuelve exactamente?</div>
+      <div class="paso">MVP: ¿cuál es la versión más pequeña que puedes construir en 1 día?</div>
+      <div class="paso">Esa versión mínima ES el proyecto. Empieza con eso. No con la versión completa.</div>
+      <div class="paso">Tiempo máximo de planeación: 30 minutos. Después de eso — ejecutas.</div>
+    </div>
+    <div class="instruccion">El TDAH genera ideas brillantes y las abandona antes de ejecutarlas. El antídoto es reducir el proyecto a su versión más simple posible y entregar eso primero.</div>
+    <div class="btns">
+      <button class="btn" onclick="ir('n_sprint')">MVP DEFINIDO — INICIAR SPRINT</button>
+    </div>
+  </div>
+
+  <!-- ATORADO -->
+  <div class="nodo" id="n_atorado" data-label="[ DESBLOQUEO DE PROYECTO ]">
+    <div class="pregunta">¿Dónde exactamente estás atorado?</div>
+    <div class="btns" style="flex-direction:column;align-items:flex-start;">
+      <button class="btn" onclick="ir('n_decision')" style="width:100%;text-align:left;margin-bottom:4px">NO SÉ QUÉ DECIDIR — DEMASIADAS OPCIONES</button>
+      <button class="btn" onclick="ir('n_tecnico')" style="width:100%;text-align:left;margin-bottom:4px">PROBLEMA TÉCNICO QUE NO PUEDO RESOLVER</button>
+      <button class="btn" onclick="ir('n_motivacion')" style="width:100%;text-align:left">PERDÍ LA MOTIVACIÓN / YA NO ME IMPORTA</button>
+    </div>
+  </div>
+
+  <!-- DECISIÓN -->
+  <div class="nodo" id="n_decision" data-label="[ PARÁLISIS POR ANÁLISIS ]">
+    <div class="pregunta">Protocolo de decisión rápida</div>
+    <div class="pasos">
+      <div class="paso">Lista las opciones. No más de 3. Si tienes más — elimina hasta quedar con 3.</div>
+      <div class="paso">Para cada opción: ¿cuál es el peor escenario si falla? Escríbelo.</div>
+      <div class="paso">Elige la opción con el peor escenario más tolerable. No la perfecta — la más reversible.</div>
+      <div class="paso">Ejecuta esa decisión por 2 horas antes de cuestionarla.</div>
+    </div>
+    <div class="instruccion">Una decisión ejecutada imperfectamente genera más aprendizaje que una decisión perfecta que nunca se toma.</div>
+    <div class="btns">
+      <button class="btn" onclick="ir('n_sprint')">DECISIÓN TOMADA — EJECUTAR</button>
+    </div>
+  </div>
+
+  <!-- TÉCNICO -->
+  <div class="nodo" id="n_tecnico" data-label="[ PROBLEMA TÉCNICO ]">
+    <div class="pregunta">Protocolo de resolución técnica</div>
+    <div class="pasos">
+      <div class="paso">Define el problema en una oración exacta. Sin eso no puedes buscar solución.</div>
+      <div class="paso">Busca en Google con esa oración exacta + el nombre de la herramienta.</div>
+      <div class="paso">Stack Overflow, GitHub Issues, documentación oficial — en ese orden.</div>
+      <div class="paso">Si en 20 minutos no hay solución: rodea el problema. Haz otra parte del proyecto.</div>
+      <div class="paso">Pide ayuda en comunidad con el error exacto. Sin contexto innecesario.</div>
+    </div>
+    <div class="instruccion">Regla de los 20 minutos: si no lo resuelves en 20 minutos, no lo resolverás en la próxima hora tampoco. Cambia de tarea o pide ayuda.</div>
+    <div class="btns">
+      <button class="btn" onclick="ir('n_sprint')">RESUELTO — CONTINUAR</button>
+      <button class="btn outline" onclick="window.location.href='comunidad.html'">→ PEDIR AYUDA EN COMUNIDAD</button>
+    </div>
+  </div>
+
+  <!-- MOTIVACIÓN -->
+  <div class="nodo" id="n_motivacion" data-label="[ PÉRDIDA DE IMPULSO ]">
+    <div class="pregunta">El proyecto perdió tracción. Protocolo de evaluación.</div>
+    <div class="pasos">
+      <div class="paso">Pregunta 1: ¿El proyecto sigue siendo válido o cambió la situación que lo originó?</div>
+      <div class="paso">Pregunta 2: ¿Está abandonado o solo pausado? Son cosas distintas.</div>
+      <div class="paso">Si sigue siendo válido: define la tarea más pequeña posible para hoy. Solo esa.</div>
+      <div class="paso">Si ya no es válido: ciérralo formalmente. Documenta qué aprendiste. Archívalo.</div>
+    </div>
+    <div class="instruccion">Proyectos sin cerrar formalmente generan carga cognitiva constante. Cerrar un proyecto no es fracasar — es liberar espacio mental para el siguiente.</div>
+    <div class="btns">
+      <button class="btn" onclick="ir('n_sprint')">CONTINÚO — TAREA MÍNIMA</button>
+      <button class="btn outline" onclick="ir('n_ok')">LO CIERRO — ARCHIVADO</button>
+    </div>
+  </div>
+
+  <!-- SPRINT -->
+  <div class="nodo" id="n_sprint" data-label="[ MODO SPRINT ]">
+    <div class="pregunta">Protocolo de ejecución concentrada</div>
+    <div class="pasos">
+      <div class="paso">Define el entregable de hoy en una oración. ¿Qué debe existir al terminar?</div>
+      <div class="paso">Silencia todas las notificaciones. Todas. Sin excepciones.</div>
+      <div class="paso">Bloques de 50 minutos trabajo / 10 minutos pausa. El temporizador es obligatorio.</div>
+      <div class="paso">Al final de cada bloque: anota el avance aunque sea en una línea.</div>
+      <div class="paso">4 horas = 3 bloques de trabajo real. Eso es suficiente para un MVP.</div>
+    </div>
+    <div class="instruccion">Activa el temporizador ahora. No cuando termines de prepararte.</div>
+    <div class="timer-box">
+      <div class="timer-display" id="timer">50:00</div>
+      <div class="timer-label">BLOQUE DE TRABAJO</div>
+    </div>
+    <div class="btns">
+      <button class="btn" onclick="startTimer()">▶ INICIAR BLOQUE</button>
+      <button class="btn outline" onclick="stopTimer()">■ PAUSAR</button>
+      <button class="btn outline" onclick="resetTimer()">↺ RESET</button>
+    </div>
+    <div class="btns" style="margin-top:16px">
+      <button class="btn outline" onclick="ir('n_ok')">BLOQUE COMPLETADO</button>
+    </div>
+  </div>
+
+  <!-- MUCHOS PROYECTOS -->
+  <div class="nodo" id="n_muchos" data-label="[ SOBRECARGA DE PROYECTOS ]">
+    <div class="pregunta">Protocolo de triaje de proyectos</div>
+    <div class="pasos">
+      <div class="paso">Lista todos tus proyectos abiertos en papel. Sin filtro — todos.</div>
+      <div class="paso">Para cada uno: ¿tiene una fecha límite real? ¿alguien lo está esperando?</div>
+      <div class="paso">Clasifica: ACTIVO (trabajas en él esta semana) / PAUSADO / ARCHIVO.</div>
+      <div class="paso">Máximo 2 proyectos ACTIVOS al mismo tiempo. El cerebro TDAH no gestiona más.</div>
+      <div class="paso">Todo lo demás va a PAUSADO o ARCHIVO. Sin culpa.</div>
+    </div>
+    <div class="instruccion">Tener 10 proyectos "en progreso" es lo mismo que no tener ninguno. La claridad de foco es lo que convierte ideas en productos.</div>
+    <div class="btns">
+      <button class="btn" onclick="ir('n_sprint')">PROYECTOS CLASIFICADOS — SPRINT</button>
+    </div>
+  </div>
+
+  <!-- OK -->
+  <div class="nodo" id="n_ok" data-label="[ SESIÓN COMPLETADA ]">
+    <div class="pregunta">Sesión de trabajo registrada.</div>
+    <div class="instruccion">Cada sesión completada es evidencia de que el sistema funciona. El patrón se refuerza con cada iteración.</div>
+    <div class="pasos">
+      <div class="paso">Anota en una línea qué avanzaste hoy.</div>
+      <div class="paso">Define la primera acción de la próxima sesión antes de cerrar.</div>
+      <div class="paso">Descansa. El cerebro consolida durante el reposo.</div>
+    </div>
+    <div class="btns">
+      <button class="btn" onclick="window.location.href='index.html'">→ VOLVER AL SISTEMA</button>
+      <button class="btn outline" onclick="reiniciar()">NUEVA SESIÓN</button>
+    </div>
+  </div>
+
+  <div class="reiniciar">
+    <button class="btn outline" onclick="reiniciar()" style="font-size:0.65rem">↺ REINICIAR DESDE EL INICIO</button>
+  </div>
+  <div class="ftr">
+    <span>NEUROSINCRONIA © 2025</span><span>PROTOCOLO 06 — PROYECTOS</span><span>LOCAL-FIRST · SIN EXCUSAS</span>
+  </div>
+</div>
+<script>
+  let timerInterval = null;
+  let seconds = 50 * 60;
+
+  function updateDisplay() {
+    const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+    const s = (seconds % 60).toString().padStart(2, '0');
+    document.getElementById('timer').textContent = m + ':' + s;
+  }
+
+  function startTimer() {
+    if (timerInterval) return;
+    timerInterval = setInterval(() => {
+      if (seconds <= 0) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        document.getElementById('timer').textContent = '¡BLOQUE COMPLETADO!';
+        document.getElementById('timer').style.fontSize = '1.5rem';
+        return;
+      }
+      seconds--;
+      updateDisplay();
+    }, 1000);
+  }
+
+  function stopTimer() {
+    clearInterval(timerInterval);
+    timerInterval = null;
+  }
+
+  function resetTimer() {
+    stopTimer();
+    seconds = 50 * 60;
+    document.getElementById('timer').style.fontSize = '';
+    updateDisplay();
+  }
+
+  function ir(id) {
+    document.querySelectorAll('.nodo').forEach(n => n.classList.remove('active'));
+    const t = document.getElementById(id);
+    t.classList.add('active');
+    t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function reiniciar() {
+    stopTimer();
+    seconds = 50 * 60;
+    updateDisplay();
+    document.querySelectorAll('.nodo').forEach(n => n.classList.remove('active'));
+    document.getElementById('n0').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
