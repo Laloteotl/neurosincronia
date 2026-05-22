@@ -1,1 +1,161 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>SUPERVIVENCIA</title><link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet"><style>body{background:#000;color:#00ff41;font-family:'Share Tech Mono';padding:48px;max-width:1000px;margin:auto}h1{font-family:Rajdhani;color:#fff}section{border:1px solid #00aa2a;padding:24px;margin:20px 0}a{color:#00ff41}</style></head><body><h1>01 — SUPERVIVENCIA</h1><section><h2>INTERNET</h2><p>Hotspot. Biblioteca. Ciber café.</p></section><section><h2>COMIDA</h2><p>Agua primero. Resuelve hambre antes de pensar.</p></section><section><h2>REFUGIO</h2><p>Cambia de entorno. Reduce ruido visual.</p></section><section><h2>TRANSPORTE</h2><p>Evalúa remoto antes de moverte.</p></section><a href="index.html">← VOLVER</a></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>SUPERVIVENCIA</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+body{
+background:#000;
+color:#00ff41;
+font-family:'Share Tech Mono',monospace;
+padding:48px;
+max-width:1000px;
+margin:auto;
+}
+h1{
+font-family:'Rajdhani',sans-serif;
+color:#fff;
+font-size:3rem;
+}
+section{
+border:1px solid #00aa2a;
+padding:24px;
+margin:20px 0;
+}
+button{
+background:#000;
+color:#00ff41;
+border:1px solid #00aa2a;
+padding:14px 24px;
+margin:10px;
+cursor:pointer;
+font-family:'Share Tech Mono',monospace;
+}
+a{
+color:#00ff41;
+text-decoration:none;
+}
+#content{
+white-space:pre-line;
+line-height:1.8;
+}
+</style>
+</head>
+<body>
+
+<h1>01 — SUPERVIVENCIA</h1>
+
+<section>
+<div id="content"></div>
+<div id="actions"></div>
+</section>
+
+<a href="index.html">← VOLVER</a>
+
+<script>
+
+const steps={
+
+0:{
+text:`Inventario vital.
+
+¿Tienes refugio seguro esta noche?`,
+buttons:[["SÍ",2],["NO",1]]
+},
+
+1:{
+text:`Localiza refugio inmediato.
+
+Biblioteca
+Centro comunitario
+Escuela
+Hospital
+Espacio público seguro`,
+buttons:[["CONFIRMAR",2]]
+},
+
+2:{
+text:`¿Tienes agua potable?`,
+buttons:[["SÍ",4],["NO",3]]
+},
+
+3:{
+text:`Consigue agua ahora.
+
+Sin agua no hay sistema.`,
+buttons:[["LISTO",4]]
+},
+
+4:{
+text:`¿Tienes alimento útil?`,
+buttons:[["SÍ",6],["NO",5]]
+},
+
+5:{
+text:`Prioridad:
+
+resolver alimento antes de productividad.`,
+buttons:[["RESUELTO",6]]
+},
+
+6:{
+text:`¿Dispositivo operativo?`,
+buttons:[["SÍ",8],["NO",7]]
+},
+
+7:{
+text:`Busca acceso comunitario:
+
+biblioteca
+cibercafé
+equipo prestado`,
+buttons:[["LISTO",8]]
+},
+
+8:{
+text:`Supervivencia mínima confirmada.
+
+Transferencia autorizada al núcleo.`,
+buttons:[["FINALIZAR",9]]
+},
+
+9:{
+text:`Sistema base estable.`,
+buttons:[["REINICIAR",0]]
+}
+
+};
+
+let current=0;
+
+function render(){
+
+const c=document.getElementById("content");
+const a=document.getElementById("actions");
+
+c.innerText=steps[current].text;
+a.innerHTML="";
+
+steps[current].buttons.forEach(([label,next])=>{
+
+const b=document.createElement("button");
+b.innerText=label;
+
+b.onclick=()=>{
+current=next;
+render();
+};
+
+a.appendChild(b);
+
+});
+
+}
+
+render();
+
+</script>
+
+</body>
+</html>
