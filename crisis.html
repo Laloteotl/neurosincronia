@@ -83,6 +83,7 @@ line-height:1.9;
 <script>
 
 const steps={
+999:{text:`Transferencia completada.`,buttons:[["CONTINUAR",0]]},
 
 0:{
 text:`El sistema detecta latencia ejecutiva.
@@ -202,7 +203,7 @@ No fue motivación.
 Fue sincronización.
 
 Transferencia autorizada a PRODUCTIVIDAD.`,
-buttons:[["REINICIAR",0]]
+buttons:[["SIGUIENTE",999]]
 }
 
 };
@@ -241,6 +242,7 @@ b.innerText=label;
 
 b.onclick=()=>{
 current=next;
+if(next===999){if(location.pathname.includes('supervivencia'))location.href='crisis.html';if(location.pathname.includes('crisis'))location.href='productividad.html';if(location.pathname.includes('productividad'))location.href='dinero.html';if(location.pathname.includes('dinero'))location.href='infraestructura.html';if(location.pathname.includes('infraestructura'))location.href='proyectos.html';if(location.pathname.includes('proyectos'))location.href='comunidad.html';if(location.pathname.includes('comunidad'))location.href='index.html';}
 localStorage.setItem(location.pathname,current);
 render();
 };
