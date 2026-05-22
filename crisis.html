@@ -19,27 +19,26 @@ h1{
 font-family:'Rajdhani',sans-serif;
 font-size:3rem;
 color:#fff;
-margin-bottom:8px;
 }
 
-.small{
-opacity:.6;
-margin-bottom:32px;
+.sub{
+opacity:.55;
+margin-bottom:30px;
 }
 
 section{
 border:1px solid #00aa2a;
-padding:32px;
-margin:24px 0;
-min-height:280px;
+padding:30px;
+margin-top:30px;
+min-height:300px;
 }
 
 button{
 background:#000;
 color:#00ff41;
 border:1px solid #00aa2a;
-padding:14px 22px;
-margin:12px 8px;
+padding:14px 24px;
+margin:10px;
 cursor:pointer;
 font-family:'Share Tech Mono',monospace;
 }
@@ -66,127 +65,143 @@ text-decoration:none;
 #content{
 white-space:pre-line;
 line-height:1.9;
-font-size:1.05rem;
 }
 </style>
 </head>
 <body>
 
 <h1>02 // CRISIS</h1>
-<div class="small">
-PROTOCOLO DE RECUPERACIÓN EJECUTIVA
-</div>
+<div class="sub">PROTOCOLO DE RECUPERACIÓN SINÁPTICA</div>
 
 <section>
 <div id="content"></div>
 <div id="actions"></div>
 </section>
 
-<a href="index.html">← REGRESAR AL NÚCLEO</a>
+<a href="index.html">← REGRESAR</a>
 
 <script>
 
 const steps={
 
 0:{
-text:`Confirmación motora requerida.
+text:`El sistema detecta latencia ejecutiva.
 
 ¿Puedes mover manos o pies?`,
 buttons:[["SÍ",1],["NO",2]]
 },
 
 1:{
-text:`Diagnóstico parcial:
+text:`Respuesta motora confirmada.
 
-El sistema conserva respuesta motora.
-
-Procediendo a estabilización hídrica.
-
-¿Consumiste agua recientemente?`,
-buttons:[["SÍ",4],["NO",3]]
+Verificando hidratación.`,
+buttons:[["CONTINUAR",3]]
 },
 
 2:{
-text:`Congelamiento ejecutivo detectado.
-
-No analices.
+text:`No luches contra esto.
 
 Mueve un dedo.
 
-Ahora otro.
+Luego otro.
 
-Ahora ambas muñecas.
-
-Ahora ambos pies.
-
-Ejecuta. Luego confirma.`,
-buttons:[["CONFIRMAR",1]]
+Tu cuerpo recuerda cómo volver.`,
+buttons:[["LISTO",1]]
 },
 
 3:{
-text:`La interpretación actual está degradada.
-
-No confíes en ella.
-
-Levántate.
-
-Llena un vaso.
-
-Bébelo completo.
-
-Regresa aquí.`,
-buttons:[["HECHO",4]]
+text:`¿Has consumido agua recientemente?`,
+buttons:[["SÍ",4],["NO",5]]
 },
 
 4:{
-text:`Verificando combustible metabólico.
+text:`Parámetros aceptables.
 
-¿Consumiste alimento útil recientemente?`,
-buttons:[["SÍ",6],["NO",5]]
+Continuando diagnóstico.`,
+buttons:[["CONTINUAR",6]]
 },
 
 5:{
-text:`Carga insuficiente detectada.
+text:`La mente interpreta amenaza donde existe agotamiento.
 
-Consume:
+Ve por agua.
 
-fruta
-proteína
-pan
-yogurt
+Bebe.
 
-No optimices.
-Ejecuta.`,
-buttons:[["COMPLETADO",6]]
+Vuelve.`,
+buttons:[["HECHO",6]]
 },
 
 6:{
-text:`La red cortical comienza recuperación.
-
-Indica qué conocimiento activa tu atención ahora.`,
-input:true,
-next:7
+text:`¿Has consumido alimento útil?`,
+buttons:[["SÍ",7],["NO",8]]
 },
 
 7:{
-text:`Canalización iniciada.
-
-Abre tu sistema de investigación.
-
-Extrae una idea nueva.
-
-Registra hallazgo.
-
-Consolida tracción cognitiva.`,
-buttons:[["CONTINUAR",8]]
+text:`Combustible confirmado.`,
+buttons:[["CONTINUAR",9]]
 },
 
 8:{
-text:`RECUPERACIÓN CONFIRMADA
+text:`Tu sistema requiere carga mínima.
 
-El sistema volvió a sincronía.
+Come algo simple.
 
-Transferencia autorizada al módulo PRODUCTIVIDAD.`,
+No optimices.
+
+Ejecuta.`,
+buttons:[["LISTO",9]]
+},
+
+9:{
+text:`Bien.
+
+Ahora escucha:
+
+No estás evitando trabajar.
+
+Estás atrapado en saturación anticipatoria.
+
+Eso termina aquí.
+
+Dime:
+
+¿Qué idea no has podido sacar de tu cabeza últimamente?`,
+input:true,
+next:10
+},
+
+10:{
+text:`Exacto.
+
+Eso sigue ahí porque tu cerebro detectó algo valioso.
+
+No necesitas terminarlo.
+
+Solo abrir la puerta.
+
+Busca una sola pieza de información nueva sobre eso.
+
+Solo una.
+
+Nada más.`,
+buttons:[["YA LA TENGO",11]]
+},
+
+11:{
+text:`Perfecto.
+
+¿Notas el cambio?
+
+La fricción bajó.
+
+La atención volvió.
+
+No fue motivación.
+
+Fue sincronización.
+
+Transferencia autorizada a PRODUCTIVIDAD.`,
 buttons:[["REINICIAR",0]]
 }
 
@@ -207,7 +222,7 @@ if(steps[current].input){
 const i=document.createElement("input");
 
 const b=document.createElement("button");
-b.innerText="ENVIAR";
+b.innerText="CONTINUAR";
 
 b.onclick=()=>{
 current=steps[current].next;
