@@ -2,14 +2,14 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>CRISIS</title>
+<title>NEUROSINCRONÍA // CRISIS</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
 body{
 background:#000;
 color:#00ff41;
-font-family:'Share Tech Mono', monospace;
+font-family:'Share Tech Mono',monospace;
 padding:48px;
 max-width:1000px;
 margin:auto;
@@ -17,38 +17,45 @@ margin:auto;
 
 h1{
 font-family:'Rajdhani',sans-serif;
-color:#fff;
 font-size:3rem;
+color:#fff;
+margin-bottom:8px;
+}
+
+.small{
+opacity:.6;
+margin-bottom:32px;
 }
 
 section{
 border:1px solid #00aa2a;
-padding:24px;
-margin:20px 0;
+padding:32px;
+margin:24px 0;
+min-height:280px;
 }
 
 button{
 background:#000;
 color:#00ff41;
 border:1px solid #00aa2a;
-padding:14px 24px;
-margin:10px;
+padding:14px 22px;
+margin:12px 8px;
 cursor:pointer;
-font-family:'Share Tech Mono', monospace;
+font-family:'Share Tech Mono',monospace;
 }
 
 button:hover{
-background:#002200;
+background:#001100;
 }
 
 input{
 width:100%;
-padding:14px;
+padding:16px;
 margin-top:20px;
 background:#000;
 color:#00ff41;
 border:1px solid #00aa2a;
-font-family:'Share Tech Mono', monospace;
+font-family:'Share Tech Mono',monospace;
 }
 
 a{
@@ -56,70 +63,131 @@ color:#00ff41;
 text-decoration:none;
 }
 
-strong{
-color:#fff;
+#content{
+white-space:pre-line;
+line-height:1.9;
+font-size:1.05rem;
 }
 </style>
 </head>
 <body>
 
-<h1>02 — CRISIS</h1>
+<h1>02 // CRISIS</h1>
+<div class="small">
+PROTOCOLO DE RECUPERACIÓN EJECUTIVA
+</div>
 
 <section>
 <div id="content"></div>
 <div id="actions"></div>
 </section>
 
-<a href="index.html">← VOLVER</a>
+<a href="index.html">← REGRESAR AL NÚCLEO</a>
 
 <script>
 
 const steps={
 
 0:{
-text:"¿Puedes mover manos o pies?",
-buttons:[["Sí",1],["No",2]]
+text:`Confirmación motora requerida.
+
+¿Puedes mover manos o pies?`,
+buttons:[["SÍ",1],["NO",2]]
 },
 
 1:{
-text:"¿Consumiste agua en últimas 2 horas?",
-buttons:[["Sí",4],["No",3]]
+text:`Diagnóstico parcial:
+
+El sistema conserva respuesta motora.
+
+Procediendo a estabilización hídrica.
+
+¿Consumiste agua recientemente?`,
+buttons:[["SÍ",4],["NO",3]]
 },
 
 2:{
-text:"No estás roto.\nTu sistema está congelado.\n\nMueve un dedo.\nLuego otro.\nLuego muñecas.\nLuego pies.",
-buttons:[["Listo",1]]
+text:`Congelamiento ejecutivo detectado.
+
+No analices.
+
+Mueve un dedo.
+
+Ahora otro.
+
+Ahora ambas muñecas.
+
+Ahora ambos pies.
+
+Ejecuta. Luego confirma.`,
+buttons:[["CONFIRMAR",1]]
 },
 
 3:{
-text:"El pensamiento actual no es criterio confiable.\n\nLevántate.\nLlena un vaso.\nBébelo completo.",
-buttons:[["Hecho",4]]
+text:`La interpretación actual está degradada.
+
+No confíes en ella.
+
+Levántate.
+
+Llena un vaso.
+
+Bébelo completo.
+
+Regresa aquí.`,
+buttons:[["HECHO",4]]
 },
 
 4:{
-text:"¿Comiste en últimas 4 horas?",
-buttons:[["Sí",6],["No",5]]
+text:`Verificando combustible metabólico.
+
+¿Consumiste alimento útil recientemente?`,
+buttons:[["SÍ",6],["NO",5]]
 },
 
 5:{
-text:"Consume energía mínima:\n\nFruta\nPan\nYogurt\nProteína simple",
-buttons:[["Listo",6]]
+text:`Carga insuficiente detectada.
+
+Consume:
+
+fruta
+proteína
+pan
+yogurt
+
+No optimices.
+Ejecuta.`,
+buttons:[["COMPLETADO",6]]
 },
 
 6:{
-text:"¿Qué tema activa tu curiosidad ahora?",
+text:`La red cortical comienza recuperación.
+
+Indica qué conocimiento activa tu atención ahora.`,
 input:true,
 next:7
 },
 
 7:{
-text:"Abre GPT, Gemini o NotebookLM.\n\nInvestiga durante 15 minutos.\n\nCrea nota markdown.",
-buttons:[["Terminé",8]]
+text:`Canalización iniciada.
+
+Abre tu sistema de investigación.
+
+Extrae una idea nueva.
+
+Registra hallazgo.
+
+Consolida tracción cognitiva.`,
+buttons:[["CONTINUAR",8]]
 },
 
 8:{
-text:"Hiperfoco detectado.\n\nSistema estabilizado.\n\nContinúa al módulo PRODUCTIVIDAD.",
-buttons:[["Reiniciar",0]]
+text:`RECUPERACIÓN CONFIRMADA
+
+El sistema volvió a sincronía.
+
+Transferencia autorizada al módulo PRODUCTIVIDAD.`,
+buttons:[["REINICIAR",0]]
 }
 
 };
@@ -128,40 +196,40 @@ let current=0;
 
 function render(){
 
-const content=document.getElementById("content");
-const actions=document.getElementById("actions");
+const c=document.getElementById("content");
+const a=document.getElementById("actions");
 
-content.innerText=steps[current].text;
-actions.innerHTML="";
+c.innerText=steps[current].text;
+a.innerHTML="";
 
 if(steps[current].input){
 
-const input=document.createElement("input");
+const i=document.createElement("input");
 
-const btn=document.createElement("button");
-btn.innerText="Continuar";
+const b=document.createElement("button");
+b.innerText="ENVIAR";
 
-btn.onclick=()=>{
+b.onclick=()=>{
 current=steps[current].next;
 render();
 };
 
-actions.appendChild(input);
-actions.appendChild(btn);
+a.appendChild(i);
+a.appendChild(b);
 
 }else{
 
 steps[current].buttons.forEach(([label,next])=>{
 
-const btn=document.createElement("button");
-btn.innerText=label;
+const b=document.createElement("button");
+b.innerText=label;
 
-btn.onclick=()=>{
+b.onclick=()=>{
 current=next;
 render();
 };
 
-actions.appendChild(btn);
+a.appendChild(b);
 
 });
 
