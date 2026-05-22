@@ -32,15 +32,6 @@ margin:10px;
 cursor:pointer;
 font-family:'Share Tech Mono',monospace;
 }
-input,textarea{
-width:100%;
-padding:14px;
-margin-top:10px;
-background:#000;
-color:#00ff41;
-border:1px solid #00aa2a;
-font-family:'Share Tech Mono',monospace;
-}
 a{
 color:#00ff41;
 text-decoration:none;
@@ -65,64 +56,70 @@ line-height:1.8;
 <script>
 
 const steps={
-999:{text:`Transferencia completada.`,buttons:[["CONTINUAR",0]]},
 
 0:{
-text:`Protocolo comunitario activado.
-
-Aquí no mendigas.
-
-Intercambias valor.
-
-¿Necesitas apoyo real?`,
-buttons:[["SÍ",1],["NO",6]]
+text:`¿Necesitas apoyo real?`,
+buttons:[["SÍ",1],["NO",8]]
 },
 
 1:{
-text:`Declara tu situación.`,
-form:true,
-next:2
+text:`¿Qué necesitas?`,
+buttons:[
+["DINERO",2],
+["COMIDA",2],
+["INTERNET",2],
+["TRANSPORTE",2],
+["CONTACTO",2]
+]
 },
 
 2:{
-text:`¿Qué necesitas resolver?`,
+text:`¿Qué puedes ofrecer?`,
 buttons:[
-["DINERO",3],
-["INTERNET",3],
-["COMIDA",3],
-["TRANSPORTE",3],
-["CONTACTO",3]
+["TRABAJO",3],
+["TRUEQUE",3],
+["SERVICIO DIGITAL",3],
+["COLABORAR EN PROYECTOS",3],
+["DIFUSIÓN",3],
+["MENTORÍA",3],
+["APRENDER Y EJECUTAR",3]
 ]
 },
 
 3:{
-text:`¿Qué ofreces a cambio?`,
-form:true,
-next:4
+text:`El sistema publicará tu ficha:
+
+Necesita:
+(recurso)
+
+Ofrece:
+(valor)
+
+Buscando coincidencias...`,
+buttons:[["CONTINUAR",4]]
 },
 
 4:{
-text:`Coincidencia comunitaria iniciada.
+text:`Posibles match:
 
-El sistema buscará:
+Persona necesita lo que ofreces.
 
-Tengo → Necesitas
-Necesito → Ofreces`,
+Persona ofrece lo que buscas.`,
 buttons:[["CONTINUAR",5]]
 },
 
 5:{
-text:`Match operativo generado.
+text:`Coordina por chat interno.
 
-Coordina intercambio directo.
+Intercambio directo.
 
-Cierra trato fuera de plataforma.`,
-buttons:[["FINALIZAR",6]]
+Sin intermediarios.`,
+buttons:[["FINALIZAR",8]]
 },
 
-6:{
+8:{
 text:`Sistema social estabilizado.`,
-buttons:[["SIGUIENTE",999]]
+buttons:[["REINICIAR",0]]
 }
 
 };
@@ -137,23 +134,6 @@ const a=document.getElementById("actions");
 c.innerText=steps[current].text;
 a.innerHTML="";
 
-if(steps[current].form){
-
-const t=document.createElement("textarea");
-
-const b=document.createElement("button");
-b.innerText="CONTINUAR";
-
-b.onclick=()=>{
-current=steps[current].next;
-render();
-};
-
-a.appendChild(t);
-a.appendChild(b);
-
-}else{
-
 steps[current].buttons.forEach(([label,next])=>{
 
 const b=document.createElement("button");
@@ -161,7 +141,6 @@ b.innerText=label;
 
 b.onclick=()=>{
 current=next;
-if(next===999){if(location.pathname.includes('supervivencia'))location.href='crisis.html';if(location.pathname.includes('crisis'))location.href='productividad.html';if(location.pathname.includes('productividad'))location.href='dinero.html';if(location.pathname.includes('dinero'))location.href='infraestructura.html';if(location.pathname.includes('infraestructura'))location.href='proyectos.html';if(location.pathname.includes('proyectos'))location.href='comunidad.html';if(location.pathname.includes('comunidad'))location.href='index.html';}
 localStorage.setItem(location.pathname,current);
 render();
 };
@@ -169,8 +148,6 @@ render();
 a.appendChild(b);
 
 });
-
-}
 
 }
 
