@@ -2,37 +2,27 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>NEUROSINCRONÍA // PRODUCTIVIDAD</title>
+<title>PRODUCTIVIDAD</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
-
 <style>
 body{
 background:#000;
 color:#00ff41;
-font-family:'Share Tech Mono',monospace;
+font-family:'Share Tech Mono', monospace;
 padding:48px;
 max-width:1000px;
 margin:auto;
 }
-
 h1{
 font-family:'Rajdhani',sans-serif;
-font-size:3rem;
 color:#fff;
+font-size:3rem;
 }
-
-.sub{
-opacity:.55;
-margin-bottom:30px;
-}
-
 section{
 border:1px solid #00aa2a;
-padding:30px;
-margin-top:30px;
-min-height:300px;
+padding:24px;
+margin:20px 0;
 }
-
 button{
 background:#000;
 color:#00ff41;
@@ -42,134 +32,96 @@ margin:10px;
 cursor:pointer;
 font-family:'Share Tech Mono',monospace;
 }
-
-button:hover{
-background:#001100;
-}
-
 a{
 color:#00ff41;
 text-decoration:none;
 }
-
 #content{
 white-space:pre-line;
-line-height:1.9;
+line-height:1.8;
 }
 </style>
 </head>
 <body>
 
-<h1>03 // PRODUCTIVIDAD</h1>
-<div class="sub">PROTOCOLO DE ACTIVACIÓN ECONÓMICA</div>
+<h1>03 — PRODUCTIVIDAD</h1>
 
 <section>
 <div id="content"></div>
 <div id="actions"></div>
 </section>
 
-<a href="index.html">← REGRESAR</a>
+<a href="index.html">← VOLVER</a>
 
 <script>
 
 const steps={
 
 0:{
-text:`Inventario inicial.
-
-¿Tienes conexión WIFI real y energía eléctrica?`,
+text:`¿Tienes conexión WIFI estable y energía eléctrica?`,
 buttons:[["SÍ",4],["NO",1]]
 },
 
 1:{
-text:`Localiza acceso público.
+text:`Busca acceso público.
 
 Biblioteca
-Escuela pública
 Centro comunitario
-Starbucks
+Escuela pública
 Aeropuerto
-Walmart
-Home Depot
+Café abierto
 
-Confirma cuando llegues.`,
+Regresa cuando estés conectado.`,
 buttons:[["CONFIRMAR",4]]
 },
 
 4:{
-text:`Infraestructura operativa.
-
-¿Tienes habilidades digitales utilizables hoy?`,
+text:`¿Posees habilidad digital monetizable hoy?`,
 buttons:[["SÍ",5],["NO",8]]
 },
 
 5:{
-text:`Ruta de producción.
+text:`Investiga.
 
-Investiga.
-Sube hallazgos.
-Consolida conocimiento.
+Consolida.
 
-Canal base:
+Produce.
 
-https://www.youtube.com/@consolidar-ia`,
+Publica.
+
+Canal guía:
+youtube.com/@consolidar-ia`,
 buttons:[["CONTINUAR",6]]
 },
 
 6:{
-text:`Convierte conocimiento en activo.
+text:`Construye mínimo viable.
 
-Video
-Producto
-Automatización
-Tienda
+Publica.
 
-Horizonte estimado:
-30 días`,
+Itera durante 30 días.`,
 buttons:[["LISTO",7]]
 },
 
 7:{
-text:`Monetización estratégica iniciada.
-
-Transferencia autorizada al módulo DINERO.`,
+text:`Ruta estratégica iniciada.`,
 buttons:[["REINICIAR",0]]
 },
 
 8:{
-text:`No necesitas expertise.
-
-Busca algo vendible hoy:
+text:`Entonces vende algo hoy.
 
 Comida
 Postres
 Despensa
-Servicio simple`,
+Servicio inmediato`,
 buttons:[["CONTINUAR",9]]
 },
 
 9:{
-text:`Si no hay dinero:
+text:`Sin dinero:
 
-activa trueque TDAHsome.
-
-Tengo → Necesito
-
-Intercambio comunitario inmediato.`,
-buttons:[["CONTINUAR",10]]
-},
-
-10:{
-text:`Si aún falta recurso:
-
-activa micrositio UN PARO.
-
-Publica:
-
-Quién eres
-Qué tienes
-Qué buscas
-Qué sabes hacer`,
+activa trueque comunitario.`,
 buttons:[["FINALIZAR",7]]
 }
 
