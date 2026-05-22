@@ -2,261 +2,87 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>NEUROSINCRONÍA // CRISIS</title>
+<title>CRISIS</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
-
 <style>
 body{
 background:#000;
 color:#00ff41;
-font-family:'Share Tech Mono',monospace;
+font-family:'Share Tech Mono';
 padding:48px;
 max-width:1000px;
-margin:auto;
+margin:auto
 }
-
-h1{
-font-family:'Rajdhani',sans-serif;
-font-size:3rem;
-color:#fff;
-}
-
-.sub{
-opacity:.55;
-margin-bottom:30px;
-}
-
-section{
+h1{font-family:Rajdhani;color:#fff}
+.box{
 border:1px solid #00aa2a;
-padding:30px;
-margin-top:30px;
-min-height:300px;
+padding:24px;
+margin:24px 0
 }
-
 button{
-background:#000;
-color:#00ff41;
-border:1px solid #00aa2a;
-padding:14px 24px;
-margin:10px;
+background:#00ff41;
+color:#000;
+border:none;
+padding:14px 20px;
 cursor:pointer;
-font-family:'Share Tech Mono',monospace;
+font-weight:bold;
+margin:8px
 }
-
-button:hover{
-background:#001100;
-}
-
-input{
-width:100%;
-padding:16px;
-margin-top:20px;
-background:#000;
-color:#00ff41;
-border:1px solid #00aa2a;
-font-family:'Share Tech Mono',monospace;
-}
-
-a{
-color:#00ff41;
-text-decoration:none;
-}
-
-#content{
-white-space:pre-line;
-line-height:1.9;
-}
+.hidden{display:none}
+a{color:#00ff41}
 </style>
 </head>
 <body>
 
-<h1>02 // CRISIS</h1>
-<div class="sub">PROTOCOLO DE RECUPERACIÓN SINÁPTICA</div>
+<h1>02 — MANEJO DE CRISIS</h1>
 
-<section>
-<div id="content"></div>
-<div id="actions"></div>
-</section>
+<div class="box" id="start">
+<p>¿Puedes levantarte físicamente?</p>
+<button onclick="show('yes1')">SÍ</button>
+<button onclick="show('no1')">NO</button>
+</div>
 
-<a href="index.html">← REGRESAR</a>
+<div class="box hidden" id="yes1">
+<p>Levántate ahora.</p>
+<p>Toma agua.</p>
+<p>Regresa y pulsa continuar.</p>
+<button onclick="show('step2')">HECHO</button>
+</div>
+
+<div class="box hidden" id="no1">
+<p>Respira 10 veces.</p>
+<p>Si sigues inmóvil tras 5 minutos → activar apoyo externo.</p>
+<button onclick="show('help')">NECESITO APOYO</button>
+</div>
+
+<div class="box hidden" id="step2">
+<p>¿Tienes internet?</p>
+<button onclick="show('internet')">SÍ</button>
+<button onclick="show('offline')">NO</button>
+</div>
+
+<div class="box hidden" id="internet">
+<p>Abre ChatGPT y pide investigación concreta.</p>
+<p>Genera un archivo PoW.</p>
+</div>
+
+<div class="box hidden" id="offline">
+<p>Modo local-first:</p>
+<p>Abre Obsidian y escribe 10 líneas.</p>
+</div>
+
+<div class="box hidden" id="help">
+<p>Escalando intervención.</p>
+<p>Contacto profesional recomendado.</p>
+<p>Próximamente conexión automática.</p>
+</div>
+
+<a href="index.html">← VOLVER</a>
 
 <script>
-
-const steps={
-999:{text:`Transferencia completada.`,buttons:[["CONTINUAR",0]]},
-
-0:{
-text:`El sistema detecta latencia ejecutiva.
-
-¿Puedes mover manos o pies?`,
-buttons:[["SÍ",1],["NO",2]]
-},
-
-1:{
-text:`Respuesta motora confirmada.
-
-Verificando hidratación.`,
-buttons:[["CONTINUAR",3]]
-},
-
-2:{
-text:`No luches contra esto.
-
-Mueve un dedo.
-
-Luego otro.
-
-Tu cuerpo recuerda cómo volver.`,
-buttons:[["LISTO",1]]
-},
-
-3:{
-text:`¿Has consumido agua recientemente?`,
-buttons:[["SÍ",4],["NO",5]]
-},
-
-4:{
-text:`Parámetros aceptables.
-
-Continuando diagnóstico.`,
-buttons:[["CONTINUAR",6]]
-},
-
-5:{
-text:`La mente interpreta amenaza donde existe agotamiento.
-
-Ve por agua.
-
-Bebe.
-
-Vuelve.`,
-buttons:[["HECHO",6]]
-},
-
-6:{
-text:`¿Has consumido alimento útil?`,
-buttons:[["SÍ",7],["NO",8]]
-},
-
-7:{
-text:`Combustible confirmado.`,
-buttons:[["CONTINUAR",9]]
-},
-
-8:{
-text:`Tu sistema requiere carga mínima.
-
-Come algo simple.
-
-No optimices.
-
-Ejecuta.`,
-buttons:[["LISTO",9]]
-},
-
-9:{
-text:`Bien.
-
-Ahora escucha:
-
-No estás evitando trabajar.
-
-Estás atrapado en saturación anticipatoria.
-
-Eso termina aquí.
-
-Dime:
-
-¿Qué idea no has podido sacar de tu cabeza últimamente?`,
-input:true,
-next:10
-},
-
-10:{
-text:`Exacto.
-
-Eso sigue ahí porque tu cerebro detectó algo valioso.
-
-No necesitas terminarlo.
-
-Solo abrir la puerta.
-
-Busca una sola pieza de información nueva sobre eso.
-
-Solo una.
-
-Nada más.`,
-buttons:[["YA LA TENGO",11]]
-},
-
-11:{
-text:`Perfecto.
-
-¿Notas el cambio?
-
-La fricción bajó.
-
-La atención volvió.
-
-No fue motivación.
-
-Fue sincronización.
-
-Transferencia autorizada a PRODUCTIVIDAD.`,
-buttons:[["SIGUIENTE",999]]
+function show(id){
+document.getElementById(id).classList.remove('hidden');
 }
-
-};
-
-let current=parseInt(localStorage.getItem(location.pathname))||0;
-
-function render(){
-
-const c=document.getElementById("content");
-const a=document.getElementById("actions");
-
-c.innerText=steps[current].text;
-a.innerHTML="";
-
-if(steps[current].input){
-
-const i=document.createElement("input");
-
-const b=document.createElement("button");
-b.innerText="CONTINUAR";
-
-b.onclick=()=>{
-current=steps[current].next;
-render();
-};
-
-a.appendChild(i);
-a.appendChild(b);
-
-}else{
-
-steps[current].buttons.forEach(([label,next])=>{
-
-const b=document.createElement("button");
-b.innerText=label;
-
-b.onclick=()=>{
-current=next;
-if(next===999){if(location.pathname.includes('supervivencia'))location.href='crisis.html';if(location.pathname.includes('crisis'))location.href='productividad.html';if(location.pathname.includes('productividad'))location.href='dinero.html';if(location.pathname.includes('dinero'))location.href='infraestructura.html';if(location.pathname.includes('infraestructura'))location.href='proyectos.html';if(location.pathname.includes('proyectos'))location.href='comunidad.html';if(location.pathname.includes('comunidad'))location.href='index.html';}
-localStorage.setItem(location.pathname,current);
-render();
-};
-
-a.appendChild(b);
-
-});
-
-}
-
-}
-
-render();
-
 </script>
 
 </body>
