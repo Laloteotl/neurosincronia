@@ -2,104 +2,333 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>NEUROSINCRONÍA</title>
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEUROSINCRONIA</title>
 <style>
-body{
-background:#000;
-color:#00ff41;
-font-family:'Share Tech Mono',monospace;
-max-width:1200px;
-margin:auto;
-padding:48px;
+:root {
+  --bg: #0d0f11;
+  --surface: #13161a;
+  --border: #1e2327;
+  --border-active: #2e3540;
+  --text: #c8cdd4;
+  --text-dim: #5a6270;
+  --text-bright: #e8ecf0;
+  --accent: #4a9eff;
+  --accent-dim: #1a3a5c;
+  --green: #3dba7a;
+  --green-dim: #0f2d1e;
+  --warning: #f0a050;
+  --danger: #e05555;
+  --font-mono: 'JetBrains Mono','Fira Code','Courier New',monospace;
+  --font-body: 'Inter',system-ui,sans-serif;
+  --radius: 4px;
 }
-h1{
-font-family:'Rajdhani',sans-serif;
-font-size:5rem;
-color:white;
-line-height:1;
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 100vh;
 }
-p{
-line-height:2;
+
+/* ── TOPBAR ── */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 32px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  position: sticky; top: 0; z-index: 10;
 }
-.grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
-margin-top:50px;
+.logo {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--text-dim);
 }
-.card{
-border:1px solid #00aa2a;
-padding:24px;
-text-decoration:none;
-color:#00ff41;
-display:block;
+.logo span { color: var(--accent); }
+.tagline {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
 }
-.card:hover{
-background:#001100;
+
+/* ── HERO ── */
+.hero {
+  padding: 72px 32px 56px;
+  max-width: 760px;
+  margin: 0 auto;
 }
-button{
-width:100%;
-padding:20px;
-background:#00ff41;
-border:none;
-font-family:'Share Tech Mono',monospace;
-font-weight:bold;
-margin:30px 0;
-cursor:pointer;
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.hero-title {
+  font-family: var(--font-mono);
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 700;
+  color: var(--text-bright);
+  line-height: 1.15;
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+.hero-title em {
+  color: var(--accent);
+  font-style: normal;
+}
+.hero-subtitle {
+  font-size: 17px;
+  color: var(--text);
+  line-height: 1.7;
+  max-width: 560px;
+  margin-bottom: 36px;
+}
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--accent);
+  color: white;
+  text-decoration: none;
+  padding: 13px 24px;
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: opacity 0.15s;
+}
+.hero-cta:hover { opacity: 0.88; }
+.hero-cta-arrow { font-size: 18px; }
+
+/* ── DIVIDER ── */
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 0 32px;
+}
+
+/* ── MÓDULOS ── */
+.modules-section {
+  padding: 48px 32px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.modules-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.module-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color 0.15s, background 0.15s;
+  position: relative;
+  overflow: hidden;
+}
+.module-card:hover {
+  border-color: var(--border-active);
+  background: #16191e;
+}
+.module-card.featured {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+  grid-column: 1 / -1;
+}
+.module-card.featured:hover {
+  background: #1e3f65;
+}
+.module-card.crisis-card { border-color: #3a1515; }
+.module-card.crisis-card:hover { border-color: var(--danger); }
+
+.card-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+.module-card.featured .card-tag { color: var(--accent); }
+
+.card-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-bright);
+  letter-spacing: -0.01em;
+}
+.module-card.featured .card-title { font-size: 19px; color: white; }
+
+.card-desc {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+.module-card.featured .card-desc { color: #8ab8f0; font-size: 14px; }
+
+.card-arrow {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-dim);
+  font-size: 18px;
+  transition: transform 0.15s, color 0.15s;
+}
+.module-card:hover .card-arrow { transform: translateY(-50%) translateX(3px); color: var(--text); }
+.module-card.featured .card-arrow { color: var(--accent); }
+.module-card.featured:hover .card-arrow { color: white; }
+
+/* ── FOOTER ── */
+.footer {
+  padding: 32px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+  margin-top: 24px;
+}
+.footer a { color: var(--text-dim); text-decoration: none; }
+.footer a:hover { color: var(--accent); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 560px) {
+  .topbar { padding: 12px 18px; }
+  .hero { padding: 48px 18px 40px; }
+  .divider { margin: 0 18px; }
+  .modules-section { padding: 36px 18px; }
+  .modules-grid { grid-template-columns: 1fr; }
+  .module-card.featured { grid-column: auto; }
+  .footer { padding: 24px 18px; }
 }
 </style>
 </head>
 <body>
 
-<h1>NO NECESITAS<br>SISTEMA.</h1>
-
-<p>
-NeuroSincronía reemplaza fricción mental por rutas ejecutables.
-</p>
-
-<button onclick="location.href='crisis.html'">
-INICIAR PROTOCOLO
-</button>
-
-<div class="grid">
-
-<a class="card" href="supervivencia.html">
-<h2>SUPERVIVENCIA</h2>
-Internet · energía · refugio
-</a>
-
-<a class="card" href="crisis.html">
-<h2>CRISIS</h2>
-Bloqueo · ansiedad · reinicio
-</a>
-
-<a class="card" href="productividad.html">
-<h2>PRODUCTIVIDAD</h2>
-Activación económica
-</a>
-
-<a class="card" href="dinero.html">
-<h2>DINERO</h2>
-Liquidez inmediata
-</a>
-
-<a class="card" href="infraestructura.html">
-<h2>INFRAESTRUCTURA</h2>
-Dispositivos · conectividad
-</a>
-
-<a class="card" href="proyectos.html">
-<h2>PROYECTOS</h2>
-Entrega > perfección
-</a>
-
-<a class="card" href="comunidad.html">
-<h2>COMUNIDAD</h2>
-Escalamiento humano
-</a>
-
+<div class="topbar">
+  <div class="logo">NEURO<span>SINCRONIA</span></div>
+  <div class="tagline">SISTEMA DE EJECUCIÓN PARA MENTES NEURODIVERGENTES</div>
 </div>
+
+<section class="hero">
+  <div class="hero-eyebrow">v2.0 — con agente terapéutico</div>
+  <h1 class="hero-title">No necesitas<br>arreglarte.<br>Necesitas un <em>sistema.</em></h1>
+  <p class="hero-subtitle">
+    Neurosincronia reemplaza fricción mental por rutas ejecutables.
+    Diseñado para TDAH, autismo, y todo lo que está en medio.
+  </p>
+  <a href="agente.html" class="hero-cta">
+    Iniciar protocolo
+    <span class="hero-cta-arrow">→</span>
+  </a>
+</section>
+
+<div class="divider"></div>
+
+<section class="modules-section">
+  <div class="section-label">Módulos del sistema</div>
+
+  <div class="modules-grid">
+
+    <!-- AGENTE — destacado -->
+    <a href="agente.html" class="module-card featured">
+      <div class="card-tag">✦ Nuevo</div>
+      <div class="card-title">Agente terapéutico</div>
+      <div class="card-desc">Conversación guiada, diseño de hábitos, funciones ejecutivas y seguimiento 7→14→21 días. Con Pomodoro integrado.</div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <!-- CRISIS -->
+    <a href="crisis.html" class="module-card crisis-card">
+      <div class="card-tag">🔴 Urgente</div>
+      <div class="card-title">Crisis</div>
+      <div class="card-desc">Bloqueo · ansiedad · reinicio</div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <!-- SUPERVIVENCIA -->
+    <a href="supervivencia.html" class="module-card">
+      <div class="card-tag">⚡ Base</div>
+      <div class="card-title">Supervivencia</div>
+      <div class="card-desc">Internet · energía · refugio</div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <!-- PRODUCTIVIDAD -->
+    <a href="productividad.html" class="module-card">
+      <div class="card-tag">⚙️ Ejecución</div>
+      <div class="card-title">Productividad</div>
+      <div class="card-desc">Activación económica</div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <!-- DINERO -->
+    <a href="dinero.html" class="module-card">
+      <div class="card-tag">💰 Liquidez</div>
+      <div class="card-title">Dinero</div>
+      <div class="card-desc">Liquidez inmediata</div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <!-- INFRAESTRUCTURA -->
+    <a href="infraestructura.html" class="module-card">
+      <div class="card-tag">🔧 Sistema</div>
+      <div class="card-title">Infraestructura</div>
+      <div class="card-desc">Dispositivos · conectividad</div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <!-- PROYECTOS -->
+    <a href="proyectos.html" class="module-card">
+      <div class="card-tag">📦 Entrega</div>
+      <div class="card-title">Proyectos</div>
+      <div class="card-desc">Entrega &gt; perfección</div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <!-- COMUNIDAD -->
+    <a href="comunidad.html" class="module-card">
+      <div class="card-tag">🤝 Red</div>
+      <div class="card-title">Comunidad</div>
+      <div class="card-desc">Escalamiento humano</div>
+      <div class="card-arrow">→</div>
+    </a>
+
+  </div>
+</section>
+
+<footer class="footer">
+  NEUROSINCRONIA &nbsp;·&nbsp; Salud mental comunitaria &nbsp;·&nbsp;
+  <a href="https://github.com/Laloteotl/neurosincronia">GitHub</a>
+  &nbsp;·&nbsp; Crisis: <a href="tel:8002900024">SAPTEL 800 290 0024</a>
+</footer>
 
 </body>
 </html>
