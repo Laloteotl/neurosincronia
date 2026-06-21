@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEUROSINCRONIA | 02 CRISIS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #000;
+  --surface: #0a0a0a;
+  --border: #00aa2a;
+  --border-dim: rgba(0,255,65,0.15);
+  --text: #00ff41;
+  --text-dim: #00aa2a;
+  --text-bright: #fff;
+  --accent: #00ff41;
+  --accent-dim: rgba(0,255,65,0.08);
+  --danger: #ff2d55;
+  --warning: #ffaa00;
+  --btn-bg: #00ff41;
+  --btn-text: #000;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 100%; min-height: 100vh;
+  background: var(--bg); color: var(--text);
+  font-family: 'Share Tech Mono', monospace; overflow-x: hidden;
+  transition: background 0.3s, color 0.3s;
+}
+
+#ns-scanlines {
+  position: fixed; inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.06) 2px, rgba(0,0,0,0.06) 4px);
+  pointer-events: none; z-index: 999; display: none;
+}
+
+.wrap { width: 100%; max-width: 1000px; margin: 0 auto; padding: 48px 40px; }
+
+.hdr {
+  display: flex; justify-content: space-between; align-items: center;
+  border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 40px;
+}
+.logo {
+  font-family: 'Rajdhani', sans-serif; font-weight: 700;
+  font-size: 1.3rem; letter-spacing: 8px; text-transform: uppercase;
+  color: var(--text); text-shadow: 0 0 20px var(--accent);
+}
+.logo a { color: var(--text); text-decoration: none; }
+
+.hdr-right { display: flex; align-items: center; gap: 16px; }
+.tema-selector { display: flex; gap: 5px; }
+.ns-tema-btn {
+  width: 16px; height: 16px; border-radius: 50%;
+  border: 2px solid var(--border); cursor: pointer;
+  transition: transform 0.15s;
+}
+.ns-tema-btn:hover { transform: scale(1.2); }
+.ns-tema-btn.ns-activo { border-color: var(--accent); }
+.ns-tema-btn[data-tema="verde"] { background: #00ff41; }
+.ns-tema-btn[data-tema="azul"]  { background: #4a9eff; }
+.ns-tema-btn[data-tema="claro"] { background: #e8e4dc; border-color: #c5bfb5; }
+
+.status { font-size: 0.65rem; color: var(--text-dim); display: flex; gap: 24px; }
+.dot {
+  display: inline-block; width: 7px; height: 7px;
+  background: var(--danger); border-radius: 50%; margin-right: 6px;
+  box-shadow: 0 0 8px var(--danger); animation: blink 1s infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+.page-title { margin-bottom: 32px; }
+.page-title .num { font-size: 0.65rem; color: var(--text-dim); letter-spacing: 4px; margin-bottom: 8px; }
+.page-title h1 {
+  font-family: 'Rajdhani', sans-serif; font-size: 2rem; font-weight: 700;
+  color: var(--text-bright); letter-spacing: 3px;
+  text-shadow: 0 0 20px var(--accent-dim);
+}
+.page-title .sub { font-size: 0.72rem; color: var(--text-dim); margin-top: 8px; }
+
+.nodo-crisis {
+  border: 1px solid var(--border); padding: 28px; margin-bottom: 16px;
+  position: relative; display: none; animation: fadein 0.3s ease forwards;
+  background: var(--surface);
+}
+.nodo-crisis.active { display: block; }
+.nodo-crisis.alerta { border-color: var(--danger); }
+.nodo-crisis::before {
+  content: attr(data-label);
+  position: absolute; top: -10px; left: 20px;
+  background: var(--bg); padding: 0 8px;
+  font-size: 0.6rem; color: var(--text-dim); letter-spacing: 3px;
+}
+.nodo-crisis.alerta::before { color: var(--danger); }
+
+@keyframes fadein { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+.pregunta {
+  font-family: 'Rajdhani', sans-serif; font-size: 1.3rem;
+  font-weight: 700; color: var(--text-bright); margin-bottom: 16px; line-height: 1.3;
+}
+.instruccion {
+  font-size: 0.75rem; color: var(--text-dim);
+  border-left: 2px solid var(--border); padding-left: 12px;
+  line-height: 1.7; margin-bottom: 20px;
+}
+.instruccion.rojo { border-color: var(--danger); color: var(--danger); }
+
+.pasos { margin-bottom: 20px; }
+.paso {
+  font-size: 0.72rem; color: var(--text); margin-bottom: 10px;
+  padding-left: 16px; position: relative; line-height: 1.5;
+}
+.paso::before { content: '▸'; position: absolute; left: 0; color: var(--text-dim); }
+
+.btns { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+.btn {
+  display: inline-block; background: var(--btn-bg); color: var(--btn-text);
+  padding: 12px 24px; font-family: 'Share Tech Mono', monospace;
+  font-size: 0.8rem; font-weight: bold; letter-spacing: 2px;
+  text-transform: uppercase; border: none; cursor: pointer;
+  box-shadow: 0 0 16px var(--accent-dim); transition: all 0.12s;
+}
+.btn:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn.rojo { background: var(--danger); color: #fff; box-shadow: 0 0 16px rgba(255,45,85,0.3); }
+.btn.outline {
+  background: transparent; color: var(--text-dim);
+  border: 1px solid var(--border); box-shadow: none;
+}
+.btn.outline:hover { color: var(--accent); border-color: var(--accent); transform: none; }
+
+.reiniciar { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border-dim); }
+
+.ftr {
+  margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border-dim);
+  display: flex; justify-content: space-between;
+  font-size: 0.6rem; color: var(--text-dim); flex-wrap: wrap; gap: 8px;
+}
+.ftr a { color: var(--text-dim); text-decoration: none; }
+.ftr a:hover { color: var(--accent); }
+
+.back {
+  display: inline-block; font-size: 0.7rem; color: var(--text-dim);
+  text-decoration: none; letter-spacing: 2px; margin-bottom: 32px;
+}
+.back:hover { color: var(--accent); }
+
+@media (max-width: 700px) {
+  .wrap { padding: 28px 20px; }
+  .pregunta { font-size: 1.1rem; }
+  .status { display: none; }
+}
+</style>
+</head>
+<body>
+<div id="ns-scanlines"></div>
+<div class="wrap">
+
+  <header class="hdr">
+    <div class="logo"><a href="index.html">NEUROSINCRONIA</a></div>
+    <div class="hdr-right">
+      <div class="tema-selector">
+        <button class="ns-tema-btn" data-tema="verde"  title="Verde terminal" onclick="nsAplicarTema('verde')"></button>
+        <button class="ns-tema-btn" data-tema="azul"   title="Azul dark"      onclick="nsAplicarTema('azul')"></button>
+        <button class="ns-tema-btn" data-tema="claro"  title="Claro sobrio"   onclick="nsAplicarTema('claro')"></button>
+      </div>
+      <div class="status">
+        <span><span class="dot"></span>CRISIS ACTIVA</span>
+        <span>PROTOCOLO 02</span>
+      </div>
+    </div>
+  </header>
+
+  <a href="index.html" class="back">← VOLVER AL INICIO</a>
+
+  <div class="page-title">
+    <div class="num">// PROTOCOLO 02</div>
+    <h1>MANEJO DE CRISIS</h1>
+    <div class="sub">Sigue el árbol. Una pregunta a la vez. No saltes pasos.</div>
+  </div>
+
+  <div class="nodo-crisis active" id="n0" data-label="[ PUNTO DE ENTRADA ]">
+    <div class="pregunta">¿Puedes levantarte físicamente en este momento?</div>
+    <div class="instruccion">No juzgues la respuesta. Solo responde con honestidad.</div>
+    <div class="btns">
+      <button class="btn" onclick="ir('n1')">SÍ, PUEDO</button>
+      <button class="btn rojo" onclick="ir('n_inmovil')">NO PUEDO MOVERME</button>
+    </div>
+  </div>
+
+  <div class="nodo-crisis" id="n1" data-label="[ ACTIVACIÓN FÍSICA ]">
+    <div class="pregunta">Levántate ahora. No en un momento. Ahora.</div>
+    <div class="pasos">
+      <div class="paso">Ponte de pie.</div>
+      <div class="paso">Ve al baño o la cocina — cualquier movimiento cuenta.</div>
+      <div class="paso">Toma agua. Un vaso completo.</div>
+      <div class="paso">Regresa aquí cuando lo hayas hecho.</div>
+    </div>
+    <div class="instruccion">El movimiento físico rompe el bucle. No es opcional en este protocolo.</div>
+    <div class="btns">
+      <button class="btn" onclick="ir('n2')">HECHO — CONTINUAR</button>
+      <button class="btn outline" onclick="ir('n_resistencia')">NO PUEDO HACERLO</button>
+    </div>
+  </div>
+
+  <div class="nodo-crisis" id="n2" data-label="[ DIAGNÓSTICO ]">
+    <div class="pregunta">¿Cuál describe mejor tu estado ahora mismo?</div>
+    <div class="btns" style="flex-direction:column;align-items:flex-start;">
+      <button class="btn" onclick="ir('n_bloqueo')"  style="width:100%;text-align:left;margin-bottom:4px">BLOQUEO — No puedo empezar nada</button>
+      <button class="btn" onclick="ir('n_ansiedad')" style="width:100%;text-align:left;margin-bottom:4px">ANSIEDAD — Mente acelerada, cuerpo tenso</button>
+      <button class="btn" onclick="ir('n_shutdown')" style="width:100%;text-align:left;margin-bottom:4px">SHUTDOWN — Colapso total, no proceso nada</button>
+      <button class="btn" onclick="ir('n_burnout')"  style="width:100%;text-align:left">BURNOUT — Llevo días sin funcionar</button>
+    </div>
+  </div>
+
+  <div class="nodo-crisis" id="n_bloqueo" data-label="[ PROTOCOLO: BLOQUEO ]">
+    <div class="pregunta">Protocolo de desbloqueo inmediato</div>
+    <div class="pasos">
+      <div class="paso">Para. No intentes pensar más en la tarea.</div>
+      <div class="paso">Tarea de 2 minutos: algo físico — lava un vaso, mueve papeles, ordena 3 objetos.</div>
+      <div class="paso">Vuelve. Escribe UNA sola palabra sobre lo que tienes que hacer.</div>
+      <div class="paso">Solo el primer paso. No el plan completo. Solo la primera acción.</div>
+      <div class="paso">Pon un temporizador de 10 minutos y ejecuta ese único paso.</div>
+    </div>
+    <div class="instruccion">El bloqueo no es falta de capacidad. Es exceso de carga en la función ejecutiva.</div>
+    <div class="btns">
+      <button class="btn" onclick="ir('n_ok')">DESBLOQUEADO — CONTINUAR</button>
+      <button class="btn outline" onclick="ir('n_shutdown')">SIGO BLOQUEADO</button>
+    </div>
+  </div>
+
+  <div class="nodo-crisis" id="n_ansiedad" data-label="[ PROTOCOLO: ANSIEDAD ]">
+    <div class="pregunta">Protocolo de regulación del sistema nervioso</div>
+    <div class="pasos">
+      <div class="paso">Técnica 4-7-8: inhala 4 seg, retén 7 seg, exhala 8 seg.</div>
+      <div class="paso">Repite 3 veces. No negocies este paso.</div>
+      <div class="paso">Cambia de ambiente físico inmediatamente — otra silla, otra habitación.</div>
+      <div class="paso">Escribe en papel: ¿qué es exactamente lo que temes que pase? Nómbralo.</div>
+      <div class="paso">Lee lo que escribiste. El miedo escrito pierde poder.</div>
+    </div>
+    <div class="instruccion">Si la ansiedad persiste más de 20 minutos → activa SHUTDOWN.</div>
+    <div class="btns">
+      <button class="btn" onclick="ir('n_ok')">REGULADO — CONTINUAR</button>
+      <button class="btn outline" onclick="ir('n_shutdown')">PERSISTE — IR A SHUTDOWN</button>
+    </div>
+  </div>
+
+  <div class="nodo-crisis alerta" id="n_shutdown" data-label="[ PROTOCOLO: SHUTDOWN ]">
+    <div class="pregunta">Protocolo de cierre de emergencia</div>
+    <div class="pasos">
+      <div class="paso">Apaga todas las pantallas excepto esta.</div>
+      <div class="paso">15 minutos en silencio absoluto. Sin teléfono, sin música.</div>
+      <div class="paso">Agua fría. Sentado o acostado — lo que el cuerpo pida.</div>
+      <div class="paso">No tomes ninguna decisión durante el shutdown.</div>
+      <div class="paso">Al terminar: escribe en papel la única cosa más importante de hoy.</div>
+    </div>
+    <div class="instruccion rojo">El shutdown no es rendirse. Es reiniciar el sistema para que pueda volver a funcionar.</div>
+    <div class="btns">
+      <button class="btn" onclick="ir('n_ok')">REINICIO COMPLETO</button>
+      <button class="btn rojo" onclick="ir('n_burnout')">LLEVO DÍAS ASÍ</button>
+    </div>
+  </div>
+
+  <div class="nodo-crisis alerta" id="n_burnout" data-label="[ PROTOCOLO: BURNOUT ]">
+    <div class="pregunta">Protocolo de recuperación extendida</div>
+    <div class="pasos">
+      <div class="paso">Para todo lo no crítico por 48 horas. Sin culpa. Es una orden del sistema.</div>
+      <div class="paso">Prioridad: dormir, comer, hidratarte. En ese orden. Nada más.</div>
+      <div class="paso">No planifiques durante el burnout. El cerebro en burnout no puede planificar bien.</div>
+      <div class="paso">Al día 3: una tarea pequeña y completable. Solo una.</div>
+      <div class="paso">Si no mejora en 72 horas: busca apoyo profesional o activa COMUNIDAD.</div>
+    </div>
+    <div class="instruccion rojo">El burnout no se resuelve con fuerza de voluntad. Se resuelve con descanso real.</div>
+    <div class="btns">
+      <button class="btn outline" onclick="window.location.href='comunidad.html'">→ ACTIVAR COMUNIDAD</button>
+      <button class="btn" onclick="ir('n_ok')">ENTENDIDO — INICIANDO RECUPERACIÓN</button>
+    </div>
+  </div>
+
+  <div class="nodo-crisis alerta" id="n_inmovil" data-label="[ INMOVILIDAD ]">
+    <div class="pregunta">Protocolo de respiración desde donde estás</div>
+    <div class="pasos">
+      <div class="paso">No te muevas. Está bien. Respira.</div>
+      <div class="paso">Inhala contando hasta 4. Exhala contando hasta 6. Repite 5 veces.</div>
+      <div class="paso">Nota 3 cosas que puedes ver desde donde estás. Nómbralas mentalmente.</div>
+      <div class="paso">Espera 5 minutos. Solo respira.</div>
+    </div>
+    <div class="instruccion rojo">Si llevas más de 30 minutos inmóvil → contacta a alguien de confianza ahora.</div>
+    <div class="btns">
+      <button class="btn" onclick="ir('n1')">YA PUEDO MOVERME</button>
+      <button class="btn rojo" onclick="ir('n_ayuda_ext')">NECESITO APOYO EXTERNO</button>
+    </div>
+  </div>
+
+  <div class="nodo-crisis" id="n_resistencia" data-label="[ RESISTENCIA ]">
+    <div class="pregunta">El sistema detecta resistencia al movimiento</div>
+    <div class="instruccion">Esto es normal en estados de bloqueo severo. El protocolo se adapta.</div>
+    <div class="pasos">
+      <div class="paso">Mueve solo los dedos de los pies. Solo eso.</div>
+      <div class="paso">Ahora mueve una mano.</div>
+      <div class="paso">Ahora siéntate en la orilla de donde estás.</div>
+      <div class="paso">Eso cuenta como levantarte. Continúa.</div>
+    </div>
+    <div class="btns">
+      <button class="btn" onclick="ir('n2')">HECHO — CONTINUAR</button>
+    </div>
+  </div>
+
+  <div class="nodo-crisis alerta" id="n_ayuda_ext" data-label="[ APOYO EXTERNO ]">
+    <div class="pregunta">Escalando intervención</div>
+    <div class="pasos">
+      <div class="paso">Contacta a una persona de confianza ahora mismo.</div>
+      <div class="paso">Si no tienes a quién llamar → activa el nodo COMUNIDAD.</div>
+      <div class="paso">Línea de crisis México: 800 290 0024 (SAPTEL, 24hrs).</div>
+      <div class="paso">No estás solo en esto. El sistema está aquí.</div>
+    </div>
+    <div class="btns">
+      <button class="btn outline" onclick="window.location.href='comunidad.html'">→ IR A COMUNIDAD</button>
+    </div>
+  </div>
+
+  <div class="nodo-crisis" id="n_ok" data-label="[ PROTOCOLO COMPLETADO ]">
+    <div class="pregunta">Sistema estabilizado.</div>
+    <div class="instruccion">El protocolo fue ejecutado. Registra mentalmente qué funcionó.</div>
+    <div class="pasos">
+      <div class="paso">Toma 2 minutos antes de retomar cualquier tarea.</div>
+      <div class="paso">Bebe agua si no lo has hecho.</div>
+      <div class="paso">Regresa al inicio y elige el siguiente nodo de acción.</div>
+    </div>
+    <div class="btns">
+      <button class="btn" onclick="window.location.href='index.html'">→ VOLVER AL SISTEMA</button>
+      <button class="btn outline" onclick="reiniciar()">REINICIAR PROTOCOLO</button>
+    </div>
+  </div>
+
+  <div class="reiniciar">
+    <button class="btn outline" onclick="reiniciar()" style="font-size:0.65rem">↺ REINICIAR DESDE EL INICIO</button>
+  </div>
+
+  <div class="ftr">
+    <span>NEUROSINCRONIA © 2025</span>
+    <span>PROTOCOLO 02 — CRISIS</span>
+    <span>Crisis: <a href="tel:8002900024">SAPTEL 800 290 0024</a></span>
+  </div>
+
+</div>
+
+<script src="tema.js"></script>
+<script>
+  function ir(id) {
+    document.querySelectorAll('.nodo-crisis').forEach(n => n.classList.remove('active'));
+    const t = document.getElementById(id);
+    t.classList.add('active');
+    t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  function reiniciar() {
+    document.querySelectorAll('.nodo-crisis').forEach(n => n.classList.remove('active'));
+    document.getElementById('n0').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>

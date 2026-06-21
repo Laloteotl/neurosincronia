@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEUROSINCRONIA | 04 PRODUCTIVIDAD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #000; --surface: #0a0a0a; --border: #00aa2a;
+  --border-dim: rgba(0,255,65,0.15); --text: #00ff41; --text-dim: #00aa2a;
+  --text-bright: #fff; --accent: #00ff41; --accent-dim: rgba(0,255,65,0.08);
+  --danger: #ff2d55; --warning: #ffaa00; --btn-bg: #00ff41; --btn-text: #000;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; min-height: 100vh; background: var(--bg); color: var(--text); font-family: 'Share Tech Mono', monospace; overflow-x: hidden; transition: background 0.3s, color 0.3s; }
+#ns-scanlines { position: fixed; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.06) 2px, rgba(0,0,0,0.06) 4px); pointer-events: none; z-index: 999; display: none; }
+.wrap { width: 100%; max-width: 1000px; margin: 0 auto; padding: 48px 40px; }
+.hdr { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 40px; }
+.logo { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1.3rem; letter-spacing: 8px; text-transform: uppercase; color: var(--text); text-shadow: 0 0 20px var(--accent); }
+.logo a { color: var(--text); text-decoration: none; }
+.hdr-right { display: flex; align-items: center; gap: 16px; }
+.tema-selector { display: flex; gap: 5px; }
+.ns-tema-btn { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--border); cursor: pointer; transition: transform 0.15s; }
+.ns-tema-btn:hover { transform: scale(1.2); }
+.ns-tema-btn.ns-activo { border-color: var(--accent); }
+.ns-tema-btn[data-tema="verde"] { background: #00ff41; }
+.ns-tema-btn[data-tema="azul"]  { background: #4a9eff; }
+.ns-tema-btn[data-tema="claro"] { background: #e8e4dc; border-color: #c5bfb5; }
+.status { font-size: 0.65rem; color: var(--text-dim); }
+.dot { display: inline-block; width: 7px; height: 7px; background: var(--accent); border-radius: 50%; margin-right: 6px; box-shadow: 0 0 8px var(--accent); animation: blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.back { display: inline-block; font-size: 0.7rem; color: var(--text-dim); text-decoration: none; letter-spacing: 2px; margin-bottom: 32px; }
+.back:hover { color: var(--accent); }
+.page-title { margin-bottom: 40px; }
+.page-title .num { font-size: 0.65rem; color: var(--text-dim); letter-spacing: 4px; margin-bottom: 8px; }
+.page-title h1 { font-family: 'Rajdhani', sans-serif; font-size: 2rem; font-weight: 700; color: var(--text-bright); letter-spacing: 3px; }
+.page-title .sub { font-size: 0.72rem; color: var(--text-dim); margin-top: 8px; }
+.bloque { border: 1px solid var(--border-dim); padding: 24px; margin-bottom: 16px; background: var(--surface); position: relative; }
+.bloque::before { content: attr(data-label); position: absolute; top: -10px; left: 20px; background: var(--bg); padding: 0 8px; font-size: 0.6rem; color: var(--text-dim); letter-spacing: 3px; }
+.bloque-titulo { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--text-bright); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+.item { font-size: 0.72rem; color: var(--text); margin-bottom: 10px; padding-left: 16px; position: relative; line-height: 1.6; }
+.item::before { content: '▸'; position: absolute; left: 0; color: var(--text-dim); }
+.nota { font-size: 0.7rem; color: var(--text-dim); border-left: 2px solid var(--border-dim); padding-left: 12px; line-height: 1.7; margin-top: 16px; }
+.btn { display: inline-block; background: var(--btn-bg); color: var(--btn-text); padding: 10px 20px; font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; border: none; cursor: pointer; transition: opacity 0.12s; text-decoration: none; margin-top: 16px; }
+.btn:hover { opacity: 0.85; }
+.btn.outline { background: transparent; color: var(--text-dim); border: 1px solid var(--border); }
+.btn.outline:hover { color: var(--accent); border-color: var(--accent); }
+.ftr { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border-dim); display: flex; justify-content: space-between; font-size: 0.6rem; color: var(--text-dim); flex-wrap: wrap; gap: 8px; }
+.ftr a { color: var(--text-dim); text-decoration: none; }
+.ftr a:hover { color: var(--accent); }
+@media (max-width: 700px) { .wrap { padding: 28px 20px; } .status { display: none; } }
+</style>
+</head>
+<body>
+<div id="ns-scanlines"></div>
+<div class="wrap">
+  <header class="hdr">
+    <div class="logo"><a href="index.html">NEUROSINCRONIA</a></div>
+    <div class="hdr-right">
+      <div class="tema-selector">
+        <button class="ns-tema-btn" data-tema="verde" onclick="nsAplicarTema('verde')"></button>
+        <button class="ns-tema-btn" data-tema="azul"  onclick="nsAplicarTema('azul')"></button>
+        <button class="ns-tema-btn" data-tema="claro" onclick="nsAplicarTema('claro')"></button>
+      </div>
+      <div class="status"><span class="dot"></span>PROTOCOLO 04</div>
+    </div>
+  </header>
+
+  <a href="index.html" class="back">← VOLVER AL INICIO</a>
+
+  <div class="page-title">
+    <div class="num">// PROTOCOLO 04</div>
+    <h1>PRODUCTIVIDAD</h1>
+    <div class="sub">Entrega > perfección. Acción > planificación infinita.</div>
+  </div>
+
+  <div class="bloque" data-label="[ INICIO DE SESIÓN ]">
+    <div class="bloque-titulo">Ritual de activación</div>
+    <div class="item">Una sola tarea. Escríbela antes de abrir cualquier otra cosa.</div>
+    <div class="item">Tiempo estimado: 25 minutos de enfoque real valen más que 3 horas dispersas.</div>
+    <div class="item">Usa el Pomodoro del agente — o pon un temporizador físico visible.</div>
+    <div class="item">Cierra todas las pestañas que no sean la tarea activa.</div>
+    <div class="nota">El inicio es la función ejecutiva más costosa para el cerebro TDAH. El ritual reduce ese costo.</div>
+  </div>
+
+  <div class="bloque" data-label="[ PRIORIZACIÓN ]">
+    <div class="bloque-titulo">Qué hacer primero</div>
+    <div class="item">Regla del MIT: 1 tarea más importante del día. Solo una. Complétala antes de cualquier otra.</div>
+    <div class="item">Si todo es urgente: pregunta cuál tiene consecuencia real si no se hace hoy.</div>
+    <div class="item">Evita la trampa de las tareas fáciles — la urgencia no siempre es real.</div>
+    <div class="item">Lista de no-hacer: escribe lo que NO harás hoy. Igual de importante.</div>
+    <div class="nota">El cerebro neurodivergente sobreestima lo que puede hacer en un día. Subplanifica intencionalmente.</div>
+  </div>
+
+  <div class="bloque" data-label="[ EJECUCIÓN ]">
+    <div class="bloque-titulo">Mientras trabajas</div>
+    <div class="item">Regla de los 2 minutos: si algo tarda menos de 2 minutos, hazlo ahora.</div>
+    <div class="item">Captura rápida: cuando llegue otra idea, escríbela en 3 palabras y continúa.</div>
+    <div class="item">Usa el agente para descomponer tareas que se sienten imposibles.</div>
+    <div class="item">Si llevas 20 minutos sin avanzar: cambia de formato — voz, papel, otro lugar.</div>
+    <div class="nota">La hyperfocus puede ser aliada o trampa. Pon una alarma de fin de sesión.</div>
+  </div>
+
+  <div class="bloque" data-label="[ CIERRE ]">
+    <div class="bloque-titulo">Cerrar la sesión correctamente</div>
+    <div class="item">Nota de cierre: escribe en 1 oración dónde quedaste y qué sigue.</div>
+    <div class="item">Esto reduce el costo de inicio de la próxima sesión en un 60%.</div>
+    <div class="item">Marca lo que completaste — el cerebro neurodivergente necesita ver el progreso.</div>
+    <div class="item">Descanso real: no revisar redes "un momento" — eso no es descanso.</div>
+    <div class="nota">Usa el módulo Cierre de día en el agente para registrar la sesión en tu Digital Twin.</div>
+  </div>
+
+  <a href="agente.html" class="btn">→ IR AL AGENTE</a>
+  <a href="index.html" class="btn outline" style="margin-left:8px">← VOLVER AL SISTEMA</a>
+
+  <div class="ftr">
+    <span>NEUROSINCRONIA © 2025</span>
+    <span>PROTOCOLO 04 — PRODUCTIVIDAD</span>
+    <span>Crisis: <a href="tel:8002900024">SAPTEL 800 290 0024</a></span>
+  </div>
+</div>
+<script src="tema.js"></script>
+</body>
+</html>
